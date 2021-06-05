@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Mage Knight compa</string>
+    <string name="tab_text_1">Adv actions</string>
+    <string name="tab_text_2">Spells</string>
+    <string name="tab_text_3">Units</string>
+    <string name="tab_text_4">Monastery actions</string>
+</resources>
