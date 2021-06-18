@@ -8,15 +8,20 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.hermit.mageknightcompa.R
 import com.hermit.mageknightcompa.databinding.FragmentMainBinding
 
 /**
  * A placeholder fragment containing a simple view.
  */
-class CardListFragment : Fragment() {
+class CardListFragment (_data1:Array<String>, _data2:Array<Int>) : Fragment() {
 
-    private lateinit var pageViewModel: PageViewModel
+    val data1 = _data1
+    val data2 = _data2
+
+
+
     private var _binding: FragmentMainBinding? = null
 
     // This property is only valid between onCreateView and
@@ -25,9 +30,7 @@ class CardListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        pageViewModel = ViewModelProvider(this).get(PageViewModel::class.java).apply {
-            setIndex(arguments?.getInt(ARG_SECTION_NUMBER) ?: 1)
-        }
+
     }
 
     override fun onCreateView(
@@ -36,29 +39,17 @@ class CardListFragment : Fragment() {
     ): View? {
 
         var mainView = inflater.inflate(R.layout.fragment_main, null);
+
+        val concatAdapter = CustomAdapter(data1,data2)
+
+
+        val recyclerView: RecyclerView =mainView.findViewById(R.id.recycler_view)
+        recyclerView.adapter = concatAdapter
+
         return mainView;
     }
 
-    companion object {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private const val ARG_SECTION_NUMBER = "section_number"
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        @JvmStatic
-        fun newInstance(sectionNumber: Int): CardListFragment {
-            return CardListFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_SECTION_NUMBER, sectionNumber)
-                }
-            }
-        }
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
