@@ -19,10 +19,10 @@ class SectionsPagerAdapter(fa: FragmentActivity)
     override fun createFragment(position: Int ): Fragment {
 
         var cardList = ArrayList<CardModel>()
-        val carta = CardModel("prueba1",R.drawable.zelda1)
-        val carta2 = CardModel("prueba1",R.drawable.zelda2)
-        val carta3 = CardModel("prueba1",R.drawable.zelda3)
-        val carta4 = CardModel("prueba1",R.drawable.zelda4)
+        val carta = CardModel("pokémon","pikachu")
+        val carta2 = CardModel("yu-gi-oh","yugi")
+        val carta3 = CardModel("Magic the gathering","magic")
+        val carta4 = CardModel("keyforge","keyforge")
 
         cardList.add(carta)
         cardList.add(carta2)

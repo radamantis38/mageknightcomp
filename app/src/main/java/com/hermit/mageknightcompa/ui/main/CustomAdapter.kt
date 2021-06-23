@@ -1,5 +1,6 @@
 package com.hermit.mageknightcompa.ui.main
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,9 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hermit.mageknightcompa.R
-import kotlin.random.Random
 
-class CustomAdapter(private val dataSet: ArrayList<CardModel>) :
+class CustomAdapter(private val dataSet: ArrayList<CardModel>, var context: Context) :
     RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     /**
@@ -42,7 +42,7 @@ class CustomAdapter(private val dataSet: ArrayList<CardModel>) :
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         viewHolder.textView.text = dataSet.get(position).texto
-        viewHolder.imageView.setImageResource(dataSet.get(position).imagen)
+        viewHolder.imageView.setImageResource(context.resources.getIdentifier(dataSet.get(position).imagen, "drawable", context.packageName))
     }
 
     // Return the size of your dataset (invoked by the layout manager)
