@@ -17,56 +17,21 @@ class SectionsPagerAdapter(fa: FragmentActivity)
 
 
     override fun createFragment(position: Int ): Fragment {
-         var prueba :Array<String>
-        var imagenes :Array<Int>
-        when(position){
-            1 -> {
-                 prueba  =  arrayOf("test","test2","prueba3","prueba4")
-                 imagenes  =  arrayOf(
-                    R.drawable.zelda1,
-                    R.drawable.zelda2,
-                    R.drawable.zelda3,
-                    R.drawable.zelda4)
-            }
 
-            2 -> {
-                prueba  =  arrayOf("test2","test3","prueba4","prueba5")
-                imagenes  =  arrayOf(
-                    R.drawable.zelda2,
-                    R.drawable.zelda3,
-                    R.drawable.zelda4 ,
-                    R.drawable.zelda1,)
-            }
+        var cardList = ArrayList<CardModel>()
+        val carta = CardModel("prueba1",R.drawable.zelda1)
+        val carta2 = CardModel("prueba1",R.drawable.zelda2)
+        val carta3 = CardModel("prueba1",R.drawable.zelda3)
+        val carta4 = CardModel("prueba1",R.drawable.zelda4)
 
-            3 -> {
-                prueba  =  arrayOf("test26556","test65465","prueba45665","pruebaddd")
-                imagenes  =  arrayOf(
-                    R.drawable.zelda3,
-                    R.drawable.zelda4 ,
-                    R.drawable.zelda1,
-                    R.drawable.zelda2,)
-            }
+        cardList.add(carta)
+        cardList.add(carta2)
+        cardList.add(carta3)
+        cardList.add(carta4)
 
-            4 -> {
-                prueba  =  arrayOf("test2","test3","prueba4","prueba5")
-                imagenes  =  arrayOf(
-                    R.drawable.zelda4,
-                    R.drawable.zelda2,
-                    R.drawable.zelda3,
-                     R.drawable.zelda1,)
-            }
 
-            else -> {
-                prueba  =  arrayOf("test2","test3","prueba4","prueba5")
-                imagenes  =  arrayOf(
-                    R.drawable.zelda4,
-                    R.drawable.zelda2,
-                    R.drawable.zelda3,
-                    R.drawable.zelda1,)
-            }
-        }
-
-        return CardListFragment(prueba,imagenes)
+        cardList.shuffle()
+        return CardListFragment(cardList)
     }
 
 

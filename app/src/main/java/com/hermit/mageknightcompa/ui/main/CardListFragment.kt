@@ -15,10 +15,10 @@ import com.hermit.mageknightcompa.databinding.FragmentMainBinding
 /**
  * A placeholder fragment containing a simple view.
  */
-class CardListFragment (_data1:Array<String>, _data2:Array<Int>) : Fragment() {
+class CardListFragment (_data1:ArrayList<CardModel>) : Fragment() {
 
     val data1 = _data1
-    val data2 = _data2
+
 
 
 
@@ -40,7 +40,7 @@ class CardListFragment (_data1:Array<String>, _data2:Array<Int>) : Fragment() {
 
         var mainView = inflater.inflate(R.layout.fragment_main, null);
 
-        val concatAdapter = CustomAdapter(data1,data2)
+        val concatAdapter = CustomAdapter(data1)
 
 
         val recyclerView: RecyclerView =mainView.findViewById(R.id.recycler_view)
