@@ -1,7 +1,84 @@
 <resources>
     <string name="app_name">Mage Knight compa</string>
-    <string name="tab_text_1">Adv actions</string>
-    <string name="tab_text_2">Spells</string>
-    <string name="tab_text_3">Units</string>
-    <string name="tab_text_4">Monastery actions</string>
+
+    <string name="tab_offers">Offers</string>
+    <string name="tab_dummy">Dummy</string>
+    <string name="tab_round">Round</string>
+
+    <string name="offer_advanced_actions">Advanced Actions</string>
+    <string name="offer_spells">Spells</string>
+    <string name="offer_units">Units</string>
+    <string name="offer_empty">Empty</string>
+    <string name="offer_top">top</string>
+    <string name="offer_lowest">lowest</string>
+    <string name="offer_monastery">monastery</string>
+    <string name="offer_elite">elite</string>
+    <string name="offer_regular">regular</string>
+    <string name="deck_count">Deck: %d</string>
+
+    <string name="color_red">Red</string>
+    <string name="color_blue">Blue</string>
+    <string name="color_white">White</string>
+    <string name="color_green">Green</string>
+
+    <string name="round_title">Round %1$d · %2$s</string>
+    <string name="day">Day</string>
+    <string name="night">Night</string>
+
+    <string name="take">Take</string>
+    <string name="cancel">Cancel</string>
+    <string name="take_card_title">Take %s?</string>
+    <string name="take_aa_message">The offer is replenished: the other cards move down and a new one enters at the top.</string>
+    <string name="take_spell_message">Mage tower or Blue city: 7 Influence + 1 mana of the Spell\'s color. The offer is replenished.</string>
+    <string name="take_unit_message">The Unit offer is not replenished until the next Round.</string>
+    <string name="take_monastery_message">Monastery: 6 Influence. Not replenished until the next Round.</string>
+    <string name="taken">You took %s</string>
+
+    <string name="monasteries">Unburned monasteries: %d</string>
+    <string name="core_tile_revealed">Core tile revealed (Elite Units)</string>
+    <string name="artifacts">Artifacts</string>
+    <string name="gain_artifact">Gain Artifacts (draw that many + 1)</string>
+    <string name="how_many_artifacts">How many Artifacts did you gain?</string>
+    <string name="choose_artifact_to_return">Choose one to put at the bottom of the deck</string>
+    <string name="artifacts_kept">You keep: %s</string>
+    <string name="artifact_deck_empty">The Artifact deck is empty</string>
+    <string name="ok">OK</string>
+    <string name="conquered_cities">Conquered cities</string>
+    <string name="city_white">White city</string>
+    <string name="city_green">Green city</string>
+    <string name="add_elite_unit">Add Elite Unit (White city, 2 Influence)</string>
+    <string name="no_elite_units">No Elite Units left</string>
+    <string name="draw_aa_from_deck">Draw AA from deck (Green city)</string>
+    <string name="aa_deck_empty">The Advanced Action deck is empty</string>
+
+    <string name="dummy_hero">Dummy: %s</string>
+    <string name="dummy_deck">Deck: %1$d cards · Discard: %2$d</string>
+    <string name="dummy_turn">Dummy turn</string>
+    <string name="dummy_flipped">Flipped: %s</string>
+    <string name="dummy_bonus">%1$d %2$s crystal(s) → flipped %3$d more: %4$s</string>
+    <string name="dummy_no_bonus">No %s crystals → turn over</string>
+    <string name="dummy_ended_round">The Dummy announced the End of the Round: you have one last turn.</string>
+    <string name="dummy_last_cards">Deck is empty: on its next turn the Dummy will announce the End of the Round.</string>
+    <string name="dummy_waiting">Has not played yet this Round.</string>
+
+    <string name="choose_tactic">Choose your Tactic (you pick first)</string>
+    <string name="tactic_label">%1$d · %2$s</string>
+    <string name="your_tactic">Your Tactic: %s</string>
+    <string name="dummy_tactic">Dummy Tactic: %s</string>
+    <string name="you_go_first">You go first</string>
+    <string name="dummy_goes_first">The Dummy goes first</string>
+    <string name="no_tactics_left">No Tactics left</string>
+    <string name="next_round">Prepare next Round</string>
+    <string name="next_round_confirm">The Unit offer is redealt, the lowest Advanced Action goes to the Dummy\'s deck and the lowest Spell gives it a crystal.</string>
+    <string name="next_round_done">Round %1$d: the Dummy got %2$s and a %3$s crystal</string>
+
+    <string name="undo">Undo</string>
+    <string name="nothing_to_undo">Nothing to undo</string>
+    <string name="new_game">New game</string>
+    <string name="new_game_confirm">The current game will be lost.</string>
+    <string name="start">Start</string>
+    <string name="your_hero">Your Hero</string>
+    <string name="dummy_hero_label">Dummy Hero (random)</string>
+    <string name="dummy_crystals_label">Dummy crystals (the 3 dots at the bottom of its Hero card)</string>
+    <string name="no_game">No game in progress</string>
 </resources>

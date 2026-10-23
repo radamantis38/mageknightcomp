@@ -7,4 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="mana_red">#FFC62828</color>
+    <color name="mana_blue">#FF1565C0</color>
+    <color name="mana_white">#FFE0E0E0</color>
+    <color name="mana_green">#FF2E7D32</color>
 </resources>

@@ -29,11 +29,6 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    sourceSets {
-        getByName("main") {
-            res.srcDirs("src/main/res", "src/main/cards")
-        }
-    }
 }
 
 dependencies {
@@ -43,7 +38,9 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.coil)
     testImplementation(libs.junit)
+    testImplementation(libs.json)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

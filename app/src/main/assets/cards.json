@@ -1,0 +1,782 @@
+[
+  {
+    "id": "blood_rage",
+    "name": "Blood Rage",
+    "category": "ADVANCED_ACTION",
+    "color": "RED",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "intimidate",
+    "name": "Intimidate",
+    "category": "ADVANCED_ACTION",
+    "color": "RED",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "blood_ritual",
+    "name": "Blood Ritual",
+    "category": "ADVANCED_ACTION",
+    "color": "RED",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "into_the_heat",
+    "name": "Into the Heat",
+    "category": "ADVANCED_ACTION",
+    "color": "RED",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "decompose",
+    "name": "Decompose",
+    "category": "ADVANCED_ACTION",
+    "color": "RED",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "maximal_effect",
+    "name": "Maximal Effect",
+    "category": "ADVANCED_ACTION",
+    "color": "RED",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "counterattack",
+    "name": "Counterattack",
+    "category": "ADVANCED_ACTION",
+    "color": "RED",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "ritual_attack",
+    "name": "Ritual Attack",
+    "category": "ADVANCED_ACTION",
+    "color": "RED",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "blood_of_ancients",
+    "name": "Blood of Ancients",
+    "category": "ADVANCED_ACTION",
+    "color": "RED",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "explosive_bolt",
+    "name": "Explosive Bolt",
+    "category": "ADVANCED_ACTION",
+    "color": "RED",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "fire_bolt",
+    "name": "Fire Bolt",
+    "category": "ADVANCED_ACTION",
+    "color": "RED",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "ice_bolt",
+    "name": "Ice Bolt",
+    "category": "ADVANCED_ACTION",
+    "color": "BLUE",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "ice_shield",
+    "name": "Ice Shield",
+    "category": "ADVANCED_ACTION",
+    "color": "BLUE",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "frost_bridge",
+    "name": "Frost Bridge",
+    "category": "ADVANCED_ACTION",
+    "color": "BLUE",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "pure_magic",
+    "name": "Pure Magic",
+    "category": "ADVANCED_ACTION",
+    "color": "BLUE",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "steady_tempo",
+    "name": "Steady Tempo",
+    "category": "ADVANCED_ACTION",
+    "color": "BLUE",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "crystal_mastery",
+    "name": "Crystal Mastery",
+    "category": "ADVANCED_ACTION",
+    "color": "BLUE",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "magic_talent",
+    "name": "Magic Talent",
+    "category": "ADVANCED_ACTION",
+    "color": "BLUE",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "shield_bash",
+    "name": "Shield Bash",
+    "category": "ADVANCED_ACTION",
+    "color": "BLUE",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "temporal_portal",
+    "name": "Temporal Portal",
+    "category": "ADVANCED_ACTION",
+    "color": "BLUE",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "spell_forge",
+    "name": "Spell Forge",
+    "category": "ADVANCED_ACTION",
+    "color": "BLUE",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "agility",
+    "name": "Agility",
+    "category": "ADVANCED_ACTION",
+    "color": "WHITE",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "song_of_wind",
+    "name": "Song of Wind",
+    "category": "ADVANCED_ACTION",
+    "color": "WHITE",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "heroic_tale",
+    "name": "Heroic Tale",
+    "category": "ADVANCED_ACTION",
+    "color": "WHITE",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "diplomacy",
+    "name": "Diplomacy",
+    "category": "ADVANCED_ACTION",
+    "color": "WHITE",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "mana_storm",
+    "name": "Mana Storm",
+    "category": "ADVANCED_ACTION",
+    "color": "WHITE",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "learning",
+    "name": "Learning",
+    "category": "ADVANCED_ACTION",
+    "color": "WHITE",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "chivalry",
+    "name": "Chivalry",
+    "category": "ADVANCED_ACTION",
+    "color": "WHITE",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "path_finding",
+    "name": "Path Finding",
+    "category": "ADVANCED_ACTION",
+    "color": "GREEN",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "regeneration",
+    "name": "Regeneration",
+    "category": "ADVANCED_ACTION",
+    "color": "GREEN",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "in_need",
+    "name": "In Need",
+    "category": "ADVANCED_ACTION",
+    "color": "GREEN",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "ambush",
+    "name": "Ambush",
+    "category": "ADVANCED_ACTION",
+    "color": "GREEN",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "training",
+    "name": "Training",
+    "category": "ADVANCED_ACTION",
+    "color": "GREEN",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "stout_resolve",
+    "name": "Stout Resolve",
+    "category": "ADVANCED_ACTION",
+    "color": "GREEN",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "force_of_nature",
+    "name": "Force of Nature",
+    "category": "ADVANCED_ACTION",
+    "color": "GREEN",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "mountain_lore",
+    "name": "Mountain Lore",
+    "category": "ADVANCED_ACTION",
+    "color": "GREEN",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "power_of_crystals",
+    "name": "Power of Crystals",
+    "category": "ADVANCED_ACTION",
+    "color": "GREEN",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "refreshing_walk",
+    "name": "Refreshing Walk",
+    "category": "ADVANCED_ACTION",
+    "color": "GREEN",
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "fireball",
+    "name": "Fireball / Firestorm",
+    "category": "SPELL",
+    "color": "RED",
+    "competitive": false,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "flame_wall",
+    "name": "Flame Wall / Flame Wave",
+    "category": "SPELL",
+    "color": "RED",
+    "competitive": false,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "tremor",
+    "name": "Tremor / Earthquake",
+    "category": "SPELL",
+    "color": "RED",
+    "competitive": false,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "burning_shield",
+    "name": "Burning Shield / Exploding Shield",
+    "category": "SPELL",
+    "color": "RED",
+    "competitive": false,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "demolish",
+    "name": "Demolish / Disintegrate",
+    "category": "SPELL",
+    "color": "RED",
+    "competitive": false,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "offering",
+    "name": "Offering / Sacrifice",
+    "category": "SPELL",
+    "color": "RED",
+    "competitive": false,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "snowstorm",
+    "name": "Snowstorm / Blizzard",
+    "category": "SPELL",
+    "color": "BLUE",
+    "competitive": false,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "chill",
+    "name": "Chill / Lethal Chill",
+    "category": "SPELL",
+    "color": "BLUE",
+    "competitive": false,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "mist_form",
+    "name": "Mist Form / Veil of Mist",
+    "category": "SPELL",
+    "color": "BLUE",
+    "competitive": false,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "mana_bolt",
+    "name": "Mana Bolt / Mana Thunderbolt",
+    "category": "SPELL",
+    "color": "BLUE",
+    "competitive": false,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "space_bending",
+    "name": "Space Bending / Time Bending",
+    "category": "SPELL",
+    "color": "BLUE",
+    "competitive": false,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "underground_travel",
+    "name": "Underground Travel / Underground Attack",
+    "category": "SPELL",
+    "color": "GREEN",
+    "competitive": false,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "restoration",
+    "name": "Restoration / Rebirth",
+    "category": "SPELL",
+    "color": "GREEN",
+    "competitive": false,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "whirlwind",
+    "name": "Whirlwind / Tornado",
+    "category": "SPELL",
+    "color": "WHITE",
+    "competitive": false,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "wings_of_wind",
+    "name": "Wings of Wind / Wings of Night",
+    "category": "SPELL",
+    "color": "WHITE",
+    "competitive": false,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "expose",
+    "name": "Expose / Mass Expose",
+    "category": "SPELL",
+    "color": "WHITE",
+    "competitive": false,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "cure",
+    "name": "Cure / Disease",
+    "category": "SPELL",
+    "color": "GREEN",
+    "competitive": false,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "meditation",
+    "name": "Meditation / Trance",
+    "category": "SPELL",
+    "color": "GREEN",
+    "competitive": false,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "call_to_arms",
+    "name": "Call to Arms / Call to Glory",
+    "category": "SPELL",
+    "color": "WHITE",
+    "competitive": false,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "mind_read",
+    "name": "Mind Read / Mind Steal",
+    "category": "SPELL",
+    "color": "WHITE",
+    "competitive": true,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "charm",
+    "name": "Charm / Possess",
+    "category": "SPELL",
+    "color": "WHITE",
+    "competitive": false,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "energy_flow",
+    "name": "Energy Flow / Energy Steal",
+    "category": "SPELL",
+    "color": "GREEN",
+    "competitive": true,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "peasants",
+    "name": "Peasants",
+    "category": "UNIT",
+    "elite": false,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "foresters",
+    "name": "Foresters",
+    "category": "UNIT",
+    "elite": false,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "herbalist",
+    "name": "Herbalist",
+    "category": "UNIT",
+    "elite": false,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "scouts",
+    "name": "Scouts",
+    "category": "UNIT",
+    "elite": false,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "thugs",
+    "name": "Thugs",
+    "category": "UNIT",
+    "elite": false,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "utem_crossbowmen",
+    "name": "Utem Crossbowmen",
+    "category": "UNIT",
+    "elite": false,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "utem_guardsmen",
+    "name": "Utem Guardsmen",
+    "category": "UNIT",
+    "elite": false,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "utem_swordsmen",
+    "name": "Utem Swordsmen",
+    "category": "UNIT",
+    "elite": false,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "guardian_golems",
+    "name": "Guardian Golems",
+    "category": "UNIT",
+    "elite": false,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "illusionists",
+    "name": "Illusionists",
+    "category": "UNIT",
+    "elite": false,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "shocktroops",
+    "name": "Shocktroops",
+    "category": "UNIT",
+    "elite": false,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "red_cape_monks",
+    "name": "Red Cape Monks",
+    "category": "UNIT",
+    "elite": false,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "northern_monks",
+    "name": "Northern Monks",
+    "category": "UNIT",
+    "elite": false,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "savage_monks",
+    "name": "Savage Monks",
+    "category": "UNIT",
+    "elite": false,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "magic_familiars",
+    "name": "Magic Familiars",
+    "category": "UNIT",
+    "elite": false,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "fire_mages",
+    "name": "Fire Mages",
+    "category": "UNIT",
+    "elite": true,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "ice_mages",
+    "name": "Ice Mages",
+    "category": "UNIT",
+    "elite": true,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "fire_golems",
+    "name": "Fire Golems",
+    "category": "UNIT",
+    "elite": true,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "ice_golems",
+    "name": "Ice Golems",
+    "category": "UNIT",
+    "elite": true,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "sorcerers",
+    "name": "Sorcerers",
+    "category": "UNIT",
+    "elite": true,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "catapults",
+    "name": "Catapults",
+    "category": "UNIT",
+    "elite": true,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "amotep_gunners",
+    "name": "Amotep Gunners",
+    "category": "UNIT",
+    "elite": true,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "amotep_freezers",
+    "name": "Amotep Freezers",
+    "category": "UNIT",
+    "elite": true,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "heroes",
+    "name": "Heroes",
+    "category": "UNIT",
+    "elite": true,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "altem_mages",
+    "name": "Altem Mages",
+    "category": "UNIT",
+    "elite": true,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "altem_guardians",
+    "name": "Altem Guardians",
+    "category": "UNIT",
+    "elite": true,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "delphana_masters",
+    "name": "Delphana Masters",
+    "category": "UNIT",
+    "elite": true,
+    "copies": 1,
+    "text": "",
+    "image": null
+  },
+  {
+    "id": "placeholder_artifact_1",
+    "name": "Placeholder Artifact 1",
+    "category": "ARTIFACT",
+    "text": "Placeholder until the real base-game list is added",
+    "image": null
+  },
+  {
+    "id": "placeholder_artifact_2",
+    "name": "Placeholder Artifact 2",
+    "category": "ARTIFACT",
+    "text": "Placeholder until the real base-game list is added",
+    "image": null
+  },
+  {
+    "id": "placeholder_artifact_3",
+    "name": "Placeholder Artifact 3",
+    "category": "ARTIFACT",
+    "text": "Placeholder until the real base-game list is added",
+    "image": null
+  },
+  {
+    "id": "placeholder_artifact_4",
+    "name": "Placeholder Artifact 4",
+    "category": "ARTIFACT",
+    "text": "Placeholder until the real base-game list is added",
+    "image": null
+  },
+  {
+    "id": "placeholder_artifact_5",
+    "name": "Placeholder Artifact 5",
+    "category": "ARTIFACT",
+    "text": "Placeholder until the real base-game list is added",
+    "image": null
+  }
+]
