@@ -2,7 +2,6 @@ package com.hermit.mageknightcompa.ui.main
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.hermit.mageknightcompa.R
 
