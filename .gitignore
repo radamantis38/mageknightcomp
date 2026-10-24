@@ -19,5 +19,7 @@ __pycache__/
 /app/src/main/assets/cards/*
 !/app/src/main/assets/cards/.gitkeep
 
-# Built APKs carry the personal card pictures
+# Built APKs carry the personal card pictures, except the shareable one built
+# with -PwithoutCardImages
 *.apk
+!/MageKnightCompanion-public.apk
