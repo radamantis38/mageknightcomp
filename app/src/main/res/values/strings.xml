@@ -26,6 +26,7 @@
     <string name="night">Night</string>
 
     <string name="take">Take</string>
+    <string name="choose">Choose</string>
     <string name="cancel">Cancel</string>
     <string name="close">Close</string>
     <string name="take_aa_message">The offer is replenished: the other cards move down and a new one enters at the top.</string>

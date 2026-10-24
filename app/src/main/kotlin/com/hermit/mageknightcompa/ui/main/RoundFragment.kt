@@ -30,13 +30,19 @@ class RoundFragment : Fragment() {
                 .show()
         }
 
-        // While choosing it lists the available Tactics; afterwards, yours and the Dummy's
-        val tacticAdapter = CardRowAdapter { index ->
-            val game = viewModel.game.value ?: return@CardRowAdapter
+        // While choosing it lists the available Tactics; afterwards, yours and the Dummy's.
+        // Tapping one shows it full screen, with a button to choose it while choosing.
+        lateinit var tacticAdapter: CardGridAdapter
+        tacticAdapter = CardGridAdapter { index ->
+            val game = viewModel.game.value ?: return@CardGridAdapter
+            val (tactic, detail) = tacticAdapter.rows[index]
             if (game.playerTactic == null) {
-                val tactic = game.availableTactics()[index]
-                viewModel.update { chooseTactic(tactic) }
-                announceTurnOrder(viewModel)
+                showCardPreview(tactic, detail, R.string.choose) {
+                    viewModel.update { chooseTactic(tactic) }
+                    announceTurnOrder(viewModel)
+                }
+            } else {
+                showCardPreview(tactic, detail)
             }
         }
         binding.tacticList.adapter = tacticAdapter
