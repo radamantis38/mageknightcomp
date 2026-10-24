@@ -1,12 +1,14 @@
 package com.hermit.mageknightcompa
 
+import com.hermit.mageknightcompa.data.Card
 import com.hermit.mageknightcompa.data.CardCategory
 import com.hermit.mageknightcompa.data.CardRepository
 import com.hermit.mageknightcompa.data.ManaColor
+import com.hermit.mageknightcompa.game.BASIC_ACTIONS
 import com.hermit.mageknightcompa.game.City
+import com.hermit.mageknightcompa.game.DEFAULT_TACTICS
 import com.hermit.mageknightcompa.game.DummyCard
 import com.hermit.mageknightcompa.game.SoloGame
-import com.hermit.mageknightcompa.game.Tactic
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotEquals
@@ -19,8 +21,7 @@ class SoloGameTest {
 
     private val catalog = CardRepository.parse(File("src/main/assets/cards.json").readText())
 
-    private fun newGame(crystals: List<ManaColor> = listOf(ManaColor.GREEN, ManaColor.GREEN, ManaColor.BLUE)) =
-        SoloGame.start(catalog, "Tovak", "Goldyx", crystals, Random(42))
+    private fun newGame() = SoloGame.start(catalog, "Tovak", "Goldyx", Random(42))
 
     @Test
     fun setupDealsThreeCardsToEachOffer() {
@@ -34,9 +35,30 @@ class SoloGameTest {
     }
 
     @Test
-    fun competitiveSpellsAreRemoved() {
-        val game = newGame()
-        assertTrue((game.spellDeck + game.spellOffer).none { game.card(it).competitive })
+    fun dummyStartsWithTheCrystalsOnItsHeroCard() {
+        val crystals = { hero: String -> SoloGame.start(catalog, "Goldyx", hero, Random(1)).dummyCrystals }
+        assertEquals(mapOf(ManaColor.RED to 2, ManaColor.WHITE to 1), crystals("Arythea"))
+        assertEquals(mapOf(ManaColor.WHITE to 2, ManaColor.GREEN to 1), crystals("Norowas"))
+        assertEquals(mapOf(ManaColor.BLUE to 2, ManaColor.RED to 1), crystals("Tovak"))
+    }
+
+    @Test
+    fun dummyDeckUsesItsHerosBasicActionsFromTheCatalog() {
+        val goldyx = List(16) { i ->
+            Card("goldyx_card_$i", "Goldyx card $i", CardCategory.BASIC_ACTION, ManaColor.entries[i % 4], hero = "Goldyx")
+        }
+        val tovak = Card("tovak_card", "Tovak card", CardCategory.BASIC_ACTION, ManaColor.RED, hero = "Tovak")
+        val withoutBasics = catalog.filter { it.category != CardCategory.BASIC_ACTION }
+        val game = SoloGame.start(withoutBasics + goldyx + tovak, "Tovak", "Goldyx", Random(1))
+        assertEquals(goldyx.map { it.name }.toSet(), game.dummyDeck.map { it.name }.toSet())
+    }
+
+    @Test
+    fun dummyDeckFallsBackToDefaultBasicActionsUntilTheHerosDeckIsComplete() {
+        val partial = Card("goldyx_rage", "Rage", CardCategory.BASIC_ACTION, ManaColor.RED, hero = "Goldyx")
+        val withoutBasics = catalog.filter { it.category != CardCategory.BASIC_ACTION }
+        val game = SoloGame.start(withoutBasics + partial, "Tovak", "Goldyx", Random(1))
+        assertEquals(BASIC_ACTIONS.sortedBy { it.name }, game.dummyDeck.sortedBy { it.name })
     }
 
     @Test
@@ -218,8 +240,36 @@ class SoloGameTest {
             game.chooseTactic(game.availableTactics().first(), Random(it))
             game.startNextRound(Random(it)) // Day
         }
-        assertEquals(Tactic.entries.toSet(), game.removedTactics)
+        // 6 Day and 6 Night Tactics, each used once, whether they come from the catalog or not
+        assertEquals(12, game.removedTactics.size)
         assertTrue(game.availableTactics().isEmpty())
+    }
+
+    @Test
+    fun usesTheCatalogsTacticsOnceAllTwelveAreThere() {
+        val own = DEFAULT_TACTICS.map { it.copy(id = "my_${it.id}", image = "${it.id}.jpg") }
+        val withoutTactics = catalog.filter { it.category != CardCategory.TACTIC }
+        val complete = SoloGame.start(withoutTactics + own, "Tovak", "Goldyx", Random(1))
+        assertTrue(complete.availableTactics().all { it.id.startsWith("my_") && it.image != null })
+        val partial = SoloGame.start(withoutTactics + own.take(5), "Tovak", "Goldyx", Random(1))
+        assertEquals(DEFAULT_TACTICS.filter { !it.night }, partial.availableTactics())
+    }
+
+    @Test
+    fun playerGoesFirstWithTheLowerTacticNumber() {
+        val game = newGame()
+        game.chooseTactic(game.availableTactics().first { it.number == 1 }, Random(1))
+        assertEquals(true, game.playerGoesFirst)
+    }
+
+    @Test
+    fun loadsTacticsSavedByOlderVersions() {
+        val json = newGame().toJson()
+            .put("playerTactic", "PLANNING")
+            .put("removedTactics", org.json.JSONArray(listOf("EARLY_BIRD")))
+        val loaded = SoloGame.fromJson(json, catalog)
+        assertEquals("Planning", loaded.tactic(loaded.playerTactic!!).name)
+        assertEquals(setOf("early_bird"), loaded.removedTactics)
     }
 
     @Test
@@ -240,7 +290,7 @@ class SoloGameTest {
     @Test
     fun survivesSaveAndLoad() {
         val game = newGame()
-        game.chooseTactic(Tactic.PLANNING, Random(3))
+        game.chooseTactic(game.availableTactics().first { it.name == "Planning" }, Random(3))
         game.playDummyTurn()
         game.monasteries = 1
         game.conqueredCities += City.WHITE

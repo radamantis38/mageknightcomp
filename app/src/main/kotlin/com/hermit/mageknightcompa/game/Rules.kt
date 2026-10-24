@@ -2,14 +2,16 @@ package com.hermit.mageknightcompa.game
 
 import androidx.annotation.StringRes
 import com.hermit.mageknightcompa.R
+import com.hermit.mageknightcompa.data.Card
+import com.hermit.mageknightcompa.data.CardCategory
 import com.hermit.mageknightcompa.data.ManaColor
 
 /** A card in the Dummy player's Deed deck. Only its color matters when it is flipped. */
 data class DummyCard(val name: String, val color: ManaColor)
 
 /**
- * The 16 Basic Action cards every Hero starts with. Each Hero swaps one of them for a
- * Hero-specific card of the same color, so the colors are the same for every Hero.
+ * Fallback starting deck for a Dummy Hero whose 16 Basic Actions are not all in the catalog yet.
+ * Written from memory, so the catalog's cards take precedence as soon as they are added.
  */
 val BASIC_ACTIONS: List<DummyCard> = listOf(
     "Rage" to ManaColor.RED, "Rage" to ManaColor.RED,
@@ -34,21 +36,30 @@ enum class City(@StringRes val labelRes: Int) {
 /** Heroes of the base game. */
 val HEROES = listOf("Arythea", "Goldyx", "Norowas", "Tovak")
 
-/** Tactic cards. Round Order goes from the lowest [number] to the highest. */
-enum class Tactic(val number: Int, val displayName: String, val night: Boolean) {
-    EARLY_BIRD(1, "Early Bird", false),
-    RETHINK(2, "Rethink", false),
-    MANA_STEAL(3, "Mana Steal", false),
-    PLANNING(4, "Planning", false),
-    GREAT_START(5, "Great Start", false),
-    THE_RIGHT_MOMENT(6, "The Right Moment", false),
-    FROM_THE_DUSK(1, "From the Dusk", true),
-    LONG_NIGHT(2, "Long Night", true),
-    MANA_SEARCH(3, "Mana Search", true),
-    MIDNIGHT_MEDITATION(4, "Midnight Meditation", true),
-    PREPARATION(5, "Preparation", true),
-    SPARING_POWER(6, "Sparing Power", true)
+/** The three colored dots at the bottom of each Hero card: the crystals a Dummy Hero starts with. */
+val HERO_CRYSTALS: Map<String, List<ManaColor>> = mapOf(
+    "Arythea" to listOf(ManaColor.RED, ManaColor.RED, ManaColor.WHITE),
+    "Goldyx" to listOf(ManaColor.GREEN, ManaColor.GREEN, ManaColor.BLUE),
+    "Norowas" to listOf(ManaColor.WHITE, ManaColor.WHITE, ManaColor.GREEN),
+    "Tovak" to listOf(ManaColor.BLUE, ManaColor.BLUE, ManaColor.RED)
+)
+
+/**
+ * Fallback Tactic cards, used until all 6 Day and 6 Night Tactics are in the catalog. Written
+ * from memory. Round Order goes from the lowest number to the highest.
+ */
+val DEFAULT_TACTICS: List<Card> = listOf(false, true).flatMap { night ->
+    val names = if (night) {
+        listOf("From the Dusk", "Long Night", "Mana Search", "Midnight Meditation", "Preparation", "Sparing Power")
+    } else {
+        listOf("Early Bird", "Rethink", "Mana Steal", "Planning", "Great Start", "The Right Moment")
+    }
+    names.mapIndexed { i, name ->
+        Card(name.lowercase().replace(' ', '_'), name, CardCategory.TACTIC, number = i + 1, night = night)
+    }
 }
+
+const val TACTICS_PER_TIME_OF_DAY = 6
 
 /** What happened during one turn of the Dummy player. */
 data class DummyTurn(

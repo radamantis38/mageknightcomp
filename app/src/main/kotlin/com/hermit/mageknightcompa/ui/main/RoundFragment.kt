@@ -4,15 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.hermit.mageknightcompa.R
 import com.hermit.mageknightcompa.databinding.FragmentRoundBinding
-import com.hermit.mageknightcompa.game.Tactic
 
 /** Tactic selection for the current Round and preparation of the next one. */
 class RoundFragment : Fragment() {
@@ -33,6 +30,16 @@ class RoundFragment : Fragment() {
                 .show()
         }
 
+        // While choosing it lists the available Tactics; afterwards, yours and the Dummy's
+        val tacticAdapter = CardRowAdapter { index ->
+            val game = viewModel.game.value ?: return@CardRowAdapter
+            if (game.playerTactic == null) {
+                val tactic = game.availableTactics()[index]
+                viewModel.update { chooseTactic(tactic) }
+            }
+        }
+        binding.tacticList.adapter = tacticAdapter
+
         viewModel.game.observe(viewLifecycleOwner) { game ->
             binding.root.visibility = if (game == null) View.INVISIBLE else View.VISIBLE
             if (game == null) return@observe
@@ -40,24 +47,22 @@ class RoundFragment : Fragment() {
 
             val choosing = game.playerTactic == null
             binding.tacticPrompt.visibility = if (choosing) View.VISIBLE else View.GONE
-            binding.tacticButtons.removeAllViews()
             if (choosing) {
                 val tactics = game.availableTactics()
-                if (tactics.isEmpty()) binding.tacticPrompt.setText(R.string.no_tactics_left)
-                else binding.tacticPrompt.setText(R.string.choose_tactic)
-                tactics.forEach { tactic ->
-                    binding.tacticButtons.addView(MaterialButton(requireContext()).apply {
-                        text = label(tactic)
-                        setOnClickListener { viewModel.update { chooseTactic(tactic) } }
-                    }, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                binding.tacticPrompt.setText(if (tactics.isEmpty()) R.string.no_tactics_left else R.string.choose_tactic)
+                tacticAdapter.rows = tactics.map { tactic ->
+                    CardRow(tactic, getString(R.string.tactic_label, tactic.number, timeOfDay(tactic.night)))
                 }
                 binding.tacticsChosen.text = ""
             } else {
-                binding.tacticsChosen.text = listOfNotNull(
-                    getString(R.string.your_tactic, label(game.playerTactic!!)),
-                    game.dummyTactic?.let { getString(R.string.dummy_tactic, label(it)) },
+                val mine = game.tactic(game.playerTactic!!)
+                val dummy = game.dummyTactic?.let(game::tactic)
+                tacticAdapter.rows = listOfNotNull(
+                    CardRow(mine, getString(R.string.your_tactic, mine.number)),
+                    dummy?.let { CardRow(it, getString(R.string.dummy_tactic, it.number)) }
+                )
+                binding.tacticsChosen.text =
                     getString(if (game.playerGoesFirst == true) R.string.you_go_first else R.string.dummy_goes_first)
-                ).joinToString("\n")
             }
         }
         return binding.root
@@ -76,8 +81,8 @@ class RoundFragment : Fragment() {
         view?.let { Snackbar.make(it, message, Snackbar.LENGTH_LONG).show() }
     }
 
-    private fun label(tactic: Tactic) = getString(R.string.tactic_label, tactic.number, tactic.displayName)
+    private fun timeOfDay(night: Boolean) = getString(if (night) R.string.night else R.string.day)
 
     private fun roundTitle(round: Int, night: Boolean) =
-        getString(R.string.round_title, round, getString(if (night) R.string.night else R.string.day))
+        getString(R.string.round_title, round, timeOfDay(night))
 }

@@ -10,14 +10,10 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.hermit.mageknightcompa.R
-import com.hermit.mageknightcompa.data.ManaColor
 import com.hermit.mageknightcompa.databinding.DialogNewGameBinding
 import com.hermit.mageknightcompa.game.HEROES
 
-/**
- * Sets up a solo game: your Hero, a random other Hero for the Dummy, and the Dummy's three
- * starting crystals (the colored dots at the bottom of its Hero card).
- */
+/** Sets up a solo game: your Hero and a random other Hero for the Dummy. */
 class NewGameDialogFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -30,8 +26,6 @@ class NewGameDialogFragment : DialogFragment() {
         binding.playerHero.setItems(HEROES)
         binding.dummyHero.setItems(HEROES)
         binding.dummyHero.setSelection(HEROES.indices.random())
-        val crystalSpinners = listOf(binding.crystal1, binding.crystal2, binding.crystal3)
-        crystalSpinners.forEach { it.setItems(ManaColor.entries.map { c -> getString(c.labelRes) }) }
 
         // The Dummy must be a Hero nobody is playing
         binding.playerHero.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -52,9 +46,7 @@ class NewGameDialogFragment : DialogFragment() {
                 val playerHero = HEROES[binding.playerHero.selectedItemPosition]
                 var dummyHero = HEROES[binding.dummyHero.selectedItemPosition]
                 if (dummyHero == playerHero) dummyHero = (HEROES - playerHero).random()
-                ViewModelProvider(requireActivity())[GameViewModel::class.java].newGame(
-                    playerHero, dummyHero, crystalSpinners.map { ManaColor.entries[it.selectedItemPosition] }
-                )
+                ViewModelProvider(requireActivity())[GameViewModel::class.java].newGame(playerHero, dummyHero)
             }
             .apply { if (isCancelable) setNegativeButton(R.string.cancel, null) }
             .create()

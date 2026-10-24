@@ -13,3 +13,8 @@
 .externalNativeBuild
 .cxx
 local.properties
+__pycache__/
+
+# Card pictures are for personal use only and stay out of the repository
+/app/src/main/assets/cards/*
+!/app/src/main/assets/cards/.gitkeep

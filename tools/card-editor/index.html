@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Card Catalog Editor</title>
+<style>
+  :root {
+    --bg: #f6f5f8; --panel: #ffffff; --text: #1d1b22; --muted: #6b6775; --line: #e2dfe8;
+    --accent: #6200ee; --accent-text: #ffffff; --hover: #f0ecfa; --danger: #c62828;
+    --red: #c62828; --blue: #1565c0; --white: #e0e0e0; --green: #2e7d32;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141218; --panel: #1e1b24; --text: #ece8f2; --muted: #a29dab; --line: #34303c;
+      --accent: #b388ff; --accent-text: #1a1028; --hover: #2a2533; --danger: #ef5350;
+    }
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body { margin: 0; font: 14px/1.4 system-ui, sans-serif; background: var(--bg); color: var(--text); }
+  header {
+    display: flex; align-items: center; gap: 16px; padding: 12px 20px;
+    background: var(--panel); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 1;
+  }
+  header h1 { font-size: 18px; margin: 0; }
+  #counts { color: var(--muted); flex: 1; }
+  #status { color: var(--muted); }
+  #status.error { color: var(--danger); white-space: pre-line; }
+  button {
+    font: inherit; border: 1px solid var(--line); background: var(--panel); color: var(--text);
+    border-radius: 6px; padding: 6px 12px; cursor: pointer;
+  }
+  button:hover:not(:disabled) { background: var(--hover); }
+  button.primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+  button.danger { color: var(--danger); }
+  button:disabled { opacity: .5; cursor: default; }
+  main { display: grid; grid-template-columns: 340px 1fr; height: calc(100vh - 57px); }
+  aside { border-right: 1px solid var(--line); display: flex; flex-direction: column; min-height: 0; }
+  .filters { padding: 12px; display: flex; flex-direction: column; gap: 8px; border-bottom: 1px solid var(--line); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chips button { padding: 3px 10px; border-radius: 99px; font-size: 13px; }
+  .chips button.on { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+  input, select, textarea {
+    font: inherit; color: var(--text); background: var(--panel);
+    border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; width: 100%;
+  }
+  #list { list-style: none; margin: 0; padding: 0; overflow-y: auto; flex: 1; }
+  #list li {
+    display: flex; align-items: center; gap: 10px; padding: 6px 12px; cursor: pointer;
+    border-bottom: 1px solid var(--line);
+  }
+  #list li:hover { background: var(--hover); }
+  #list li.selected { background: var(--hover); box-shadow: inset 3px 0 var(--accent); }
+  #list img, #list .noimg { width: 32px; height: 45px; object-fit: cover; border-radius: 3px; flex: none; }
+  #list .noimg { background: var(--line); }
+  #list .name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #list .meta { color: var(--muted); font-size: 12px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; border: 1px solid rgba(0,0,0,.2); }
+  section#editor { overflow-y: auto; padding: 24px 32px; }
+  #empty { color: var(--muted); padding: 40px; text-align: center; }
+  form { display: grid; grid-template-columns: 1fr 260px; gap: 24px; max-width: 900px; }
+  .fields { display: flex; flex-direction: column; gap: 14px; }
+  label { display: flex; flex-direction: column; gap: 4px; font-weight: 600; }
+  label small { font-weight: normal; color: var(--muted); }
+  .check { flex-direction: row; align-items: center; gap: 8px; font-weight: normal; }
+  .check input { width: auto; }
+  .colors { display: flex; gap: 8px; }
+  .colors label { flex-direction: row; align-items: center; gap: 6px; font-weight: normal; cursor: pointer;
+    border: 1px solid var(--line); border-radius: 6px; padding: 5px 10px; }
+  .colors input { width: auto; margin: 0; }
+  .row { display: flex; gap: 8px; }
+  #drop {
+    border: 2px dashed var(--line); border-radius: 8px; aspect-ratio: 5 / 7; display: flex;
+    align-items: center; justify-content: center; text-align: center; color: var(--muted);
+    cursor: pointer; overflow: hidden; padding: 12px;
+  }
+  #drop.over { border-color: var(--accent); background: var(--hover); }
+  #drop img { width: 100%; height: 100%; object-fit: contain; }
+  .image-col { display: flex; flex-direction: column; gap: 8px; }
+  .actions { grid-column: 1 / -1; display: flex; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 16px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Card Catalog Editor</h1>
+  <span id="counts"></span>
+  <span id="status"></span>
+  <button id="save" class="primary" disabled title="Ctrl+S">Save cards.json</button>
+</header>
+<main>
+  <aside>
+    <div class="filters">
+      <div class="chips" id="categoryFilter"></div>
+      <div class="chips" id="heroFilter" hidden></div>
+      <input id="search" type="search" placeholder="Search by name">
+      <button id="add" class="primary">+ New card</button>
+    </div>
+    <ul id="list"></ul>
+  </aside>
+  <section id="editor">
+    <div id="empty">Select a card or create a new one.</div>
+    <form id="form" hidden>
+      <div class="fields">
+        <label>Name <input name="name" required autocomplete="off"></label>
+        <label>Id <small>Used by the app and for the image file name. Only a-z, 0-9 and _.</small>
+          <input name="id" pattern="[a-z0-9_]+" required autocomplete="off"></label>
+        <label>Category <select name="category"></select></label>
+        <label id="heroField">Hero <small>Whose starting deck this Basic Action belongs to.</small>
+          <select name="hero"><option value="">Choose a Hero</option></select></label>
+        <div id="colorField">
+          <label>Color</label>
+          <div class="colors" id="colors"></div>
+        </div>
+        <div class="row" id="tacticFields">
+          <label>Number <small>Round Order, 1 to 6</small><select name="number"></select></label>
+          <label>Time <small>Day or Night Tactic</small>
+            <select name="night"><option value="false">Day</option><option value="true">Night</option></select></label>
+        </div>
+        <label class="check" id="eliteField"><input type="checkbox" name="elite"> Elite Unit (gold back)</label>
+        <label>Text <small>Optional, shown under the name in the app.</small>
+          <textarea name="text" rows="4"></textarea></label>
+      </div>
+      <div class="image-col">
+        <div id="drop" tabindex="0">Click, drop or paste an image</div>
+        <input id="file" type="file" accept="image/*" hidden>
+        <button type="button" id="removeImage" class="danger">Remove image</button>
+      </div>
+      <div class="actions">
+        <span class="row">
+          <button type="button" id="delete" class="danger">Delete card</button>
+          <button type="button" id="duplicate" title="For another physical copy of the same card">Duplicate card</button>
+        </span>
+        <span id="cardNote" style="color: var(--muted)"></span>
+      </div>
+    </form>
+  </section>
+</main>
+<script>
+const CATEGORIES = {
+  BASIC_ACTION: "Basic Actions", ADVANCED_ACTION: "Advanced Actions", SPELL: "Spells", UNIT: "Units",
+  ARTIFACT: "Artifacts", TACTIC: "Tactics"
+};
+const COLORED = ["BASIC_ACTION", "ADVANCED_ACTION", "SPELL"];
+const COLORS = ["RED", "BLUE", "WHITE", "GREEN"];
+// Base-game Heroes; must match HEROES in the app's game/Rules.kt
+const HEROES = ["Arythea", "Goldyx", "Norowas", "Tovak"];
+const BASIC_DECK_SIZE = 16;
+const MAX_IMAGE_SIDE = 700;
+const JPEG_QUALITY = 0.8;
+
+let cards = [];
+let selected = null;          // index into cards
+let filter = "ALL";
+let heroFilter = "ALL";       // only used while showing Basic Actions
+let dirty = false;
+let imageVersion = Date.now(); // busts the browser cache after an image is replaced
+const pendingImageDeletes = new Set();
+
+const $ = (id) => document.getElementById(id);
+const form = $("form");
+const fields = form.elements;
+
+function slug(name) {
+  return name.toLowerCase().split(" / ")[0].normalize("NFD").replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
+}
+
+/** Basic Actions carry their Hero in the id, so every Hero can have a "Rage". */
+function idFor(card) {
+  return slug(card.category === "BASIC_ACTION" && card.hero ? `${card.hero} ${card.name}` : card.name);
+}
+
+/** New Tactics start as Day 1 so they always have a number and time of day. */
+function applyCategoryDefaults(card) {
+  if (card.category === "TACTIC" && card.number == null) {
+    card.number = 1;
+    card.night = false;
+  }
+}
+
+/** [base], or base_2, base_3... if another card already uses it. */
+function uniqueId(base, except) {
+  const taken = new Set(cards.filter((c) => c !== except).map((c) => c.id));
+  if (!taken.has(base)) return base;
+  let n = 2;
+  while (taken.has(`${base}_${n}`)) n++;
+  return `${base}_${n}`;
+}
+
+function setStatus(text, isError = false) {
+  $("status").textContent = text;
+  $("status").className = isError ? "error" : "";
+}
+
+function markDirty() {
+  dirty = true;
+  $("save").disabled = false;
+  setStatus("Unsaved changes");
+}
+
+// --- Rendering -----------------------------------------------------------------------------
+
+function renderFilters() {
+  const chips = $("categoryFilter");
+  chips.innerHTML = "";
+  for (const [key, label] of [["ALL", "All"], ...Object.entries(CATEGORIES)]) {
+    const count = key === "ALL" ? cards.length : cards.filter((c) => c.category === key).length;
+    const b = document.createElement("button");
+    b.textContent = `${label} (${count})`;
+    b.className = filter === key ? "on" : "";
+    b.onclick = () => { filter = key; renderFilters(); renderList(); };
+    chips.appendChild(b);
+  }
+  const heroChips = $("heroFilter");
+  heroChips.hidden = filter !== "BASIC_ACTION";
+  heroChips.innerHTML = "";
+  for (const hero of ["ALL", ...HEROES]) {
+    const count = cards.filter((c) => c.category === "BASIC_ACTION" && (hero === "ALL" || c.hero === hero)).length;
+    const b = document.createElement("button");
+    b.textContent = hero === "ALL" ? `All Heroes (${count})` : `${hero} (${count}/${BASIC_DECK_SIZE})`;
+    b.className = heroFilter === hero ? "on" : "";
+    b.onclick = () => { heroFilter = hero; renderFilters(); renderList(); };
+    heroChips.appendChild(b);
+  }
+  const withImage = cards.filter((c) => c.image).length;
+  $("counts").textContent = `${withImage} of ${cards.length} cards have an image`;
+}
+
+function renderList() {
+  const search = $("search").value.trim().toLowerCase();
+  const list = $("list");
+  list.innerHTML = "";
+  cards.forEach((card, i) => {
+    if (filter !== "ALL" && card.category !== filter) return;
+    if (filter === "BASIC_ACTION" && heroFilter !== "ALL" && card.hero !== heroFilter) return;
+    if (search && !card.name.toLowerCase().includes(search)) return;
+    const li = document.createElement("li");
+    li.className = i === selected ? "selected" : "";
+    const thumb = card.image ? `<img src="/images/${card.image}?v=${imageVersion}" alt="">` : `<span class="noimg"></span>`;
+    const dot = card.color ? `<span class="dot" style="background: var(--${card.color.toLowerCase()})"></span>` : "";
+    const tactic = card.category === "TACTIC" ? `${card.night ? "Night" : "Day"} ${card.number ?? "?"}` : "";
+    const meta = [tactic || card.hero || CATEGORIES[card.category], card.elite ? "elite" : ""]
+      .filter(Boolean).join(" · ");
+    li.innerHTML = `${thumb}<span class="name"></span>${dot}<span class="meta">${meta}</span>`;
+    li.querySelector(".name").textContent = card.name || "(no name)";
+    li.onclick = () => select(i);
+    list.appendChild(li);
+  });
+}
+
+function renderEditor() {
+  const card = cards[selected];
+  $("empty").hidden = !!card;
+  form.hidden = !card;
+  if (!card) return;
+  fields.name.value = card.name;
+  fields.id.value = card.id;
+  fields.category.value = card.category;
+  fields.hero.value = card.hero || "";
+  fields.number.value = card.number ?? 1;
+  fields.night.value = String(!!card.night);
+  fields.elite.checked = !!card.elite;
+  fields.text.value = card.text || "";
+  for (const input of form.querySelectorAll('input[name="color"]')) input.checked = input.value === card.color;
+  $("colorField").hidden = !COLORED.includes(card.category);
+  $("heroField").hidden = card.category !== "BASIC_ACTION";
+  $("tacticFields").hidden = card.category !== "TACTIC";
+  $("eliteField").hidden = card.category !== "UNIT";
+  $("drop").innerHTML = card.image
+    ? `<img src="/images/${card.image}?v=${imageVersion}" alt="">`
+    : "Click, drop or paste an image";
+  $("removeImage").hidden = !card.image;
+  $("cardNote").textContent = card.image ? `Image: assets/cards/${card.image}` : "No image";
+}
+
+function renderAll() { renderFilters(); renderList(); renderEditor(); }
+
+function select(i) {
+  selected = i;
+  renderList();
+  renderEditor();
+}
+
+// --- Editing -------------------------------------------------------------------------------
+
+function setupForm() {
+  for (const [key, label] of Object.entries(CATEGORIES)) fields.category.add(new Option(label, key));
+  for (const hero of HEROES) fields.hero.add(new Option(hero, hero));
+  for (let n = 1; n <= 6; n++) fields.number.add(new Option(String(n), String(n)));
+  for (const color of COLORS) {
+    const l = document.createElement("label");
+    l.innerHTML = `<input type="radio" name="color" value="${color}"><span class="dot" style="background: var(--${color.toLowerCase()})"></span>${color[0] + color.slice(1).toLowerCase()}`;
+    $("colors").appendChild(l);
+  }
+
+  form.addEventListener("input", (e) => {
+    const card = cards[selected];
+    if (!card) return;
+    const f = e.target.name;
+    if (f === "name") {
+      // Keep the id following the name until it has been edited by hand
+      card.name = fields.name.value;
+      if (!card._idEdited && card._new) card.id = uniqueId(idFor(card), card);
+      fields.id.value = card.id;
+    } else if (f === "id") {
+      card.id = fields.id.value;
+      card._idEdited = true;
+    } else if (f === "category" || f === "hero") {
+      card[f] = fields[f].value;
+      applyCategoryDefaults(card);
+      if (!card._idEdited && card._new) card.id = uniqueId(idFor(card), card);
+      fields.id.value = card.id;
+    } else if (f === "color") {
+      card.color = form.querySelector('input[name="color"]:checked').value;
+    } else if (f === "number") {
+      card.number = parseInt(fields.number.value, 10);
+    } else if (f === "night") {
+      card.night = fields.night.value === "true";
+    } else if (f === "elite") {
+      card[f] = fields[f].checked;
+    } else if (f === "text") {
+      card.text = fields.text.value;
+    }
+    markDirty();
+    renderFilters();
+    renderList();
+    if (f === "category") renderEditor();
+    if (f === "hero") renderFilters();
+  });
+
+  $("add").onclick = () => {
+    const category = filter === "ALL" ? "ADVANCED_ACTION" : filter;
+    const hero = category === "BASIC_ACTION" && heroFilter !== "ALL" ? heroFilter : undefined;
+    cards.push({ id: "", name: "", category, hero, text: "", image: null, _new: true });
+    applyCategoryDefaults(cards[cards.length - 1]);
+    markDirty();
+    renderFilters();
+    select(cards.length - 1);
+    fields.name.focus();
+  };
+
+  $("delete").onclick = () => {
+    const card = cards[selected];
+    if (!confirm(`Delete "${card.name || "this card"}"?`)) return;
+    if (card.image) pendingImageDeletes.add(card.image);
+    cards.splice(selected, 1);
+    selected = null;
+    markDirty();
+    renderAll();
+  };
+
+  $("duplicate").onclick = () => {
+    const { _new, _idEdited, ...card } = cards[selected];
+    const copy = { ...card, image: null, _new: true, _idEdited: true };
+    copy.id = uniqueId(idFor(card) || card.id, null);
+    cards.splice(selected + 1, 0, copy);
+    markDirty();
+    renderFilters();
+    select(selected + 1);
+    setStatus("Duplicated: add this copy's image");
+  };
+
+  $("removeImage").onclick = () => {
+    const card = cards[selected];
+    pendingImageDeletes.add(card.image);
+    card.image = null;
+    markDirty();
+    renderList();
+    renderEditor();
+  };
+
+  $("search").addEventListener("input", renderList);
+}
+
+// --- Images --------------------------------------------------------------------------------
+
+/** Shrinks the picture so card images don't bloat the app, and saves it as JPEG. */
+async function toJpeg(file) {
+  const bitmap = await createImageBitmap(file);
+  const scale = Math.min(1, MAX_IMAGE_SIDE / Math.max(bitmap.width, bitmap.height));
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.round(bitmap.width * scale);
+  canvas.height = Math.round(bitmap.height * scale);
+  const ctx = canvas.getContext("2d");
+  ctx.fillStyle = "#fff";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+  return new Promise((resolve) => canvas.toBlob(resolve, "image/jpeg", JPEG_QUALITY));
+}
+
+async function setImage(file) {
+  const card = cards[selected];
+  if (!card || !file || !file.type.startsWith("image/")) return;
+  if (!/^[a-z0-9_]+$/.test(card.id)) {
+    setStatus("Give the card a valid id before adding its image", true);
+    return;
+  }
+  setStatus("Uploading image…");
+  try {
+    const blob = await toJpeg(file);
+    const res = await fetch(`/api/images/${card.id}`, {
+      method: "POST", headers: { "Content-Type": "image/jpeg" }, body: blob
+    });
+    const body = await res.json();
+    if (!res.ok) throw new Error(body.errors.join("\n"));
+    if (card.image && card.image !== body.image) pendingImageDeletes.add(card.image);
+    pendingImageDeletes.delete(body.image);
+    card.image = body.image;
+    imageVersion = Date.now();
+    markDirty();
+    renderList();
+    renderEditor();
+  } catch (err) {
+    setStatus(`Image upload failed: ${err.message}`, true);
+  }
+}
+
+function setupImages() {
+  const drop = $("drop");
+  drop.onclick = () => $("file").click();
+  drop.onkeydown = (e) => { if (e.key === "Enter" || e.key === " ") $("file").click(); };
+  $("file").onchange = () => { setImage($("file").files[0]); $("file").value = ""; };
+  drop.ondragover = (e) => { e.preventDefault(); drop.classList.add("over"); };
+  drop.ondragleave = () => drop.classList.remove("over");
+  drop.ondrop = (e) => {
+    e.preventDefault();
+    drop.classList.remove("over");
+    setImage(e.dataTransfer.files[0]);
+  };
+  document.addEventListener("paste", (e) => {
+    const item = [...e.clipboardData.items].find((i) => i.type.startsWith("image/"));
+    if (item && cards[selected]) { e.preventDefault(); setImage(item.getAsFile()); }
+  });
+}
+
+// --- Loading and saving --------------------------------------------------------------------
+
+async function load() {
+  const res = await fetch("/api/cards");
+  cards = await res.json();
+  renderAll();
+  setStatus(`Loaded ${cards.length} cards`);
+}
+
+async function save() {
+  // Drop editor-only fields and those that don't apply to the category
+  const out = cards.map(({ _new, _idEdited, ...card }) => {
+    const clean = { id: card.id, name: card.name.trim(), category: card.category };
+    if (card.category === "BASIC_ACTION") clean.hero = card.hero || null;
+    if (COLORED.includes(card.category)) clean.color = card.color;
+    if (card.category === "UNIT") clean.elite = !!card.elite;
+    if (card.category === "TACTIC") {
+      clean.number = card.number ?? 1;
+      clean.night = !!card.night;
+    }
+    clean.text = card.text || "";
+    clean.image = card.image || null;
+    return clean;
+  });
+  setStatus("Saving…");
+  const res = await fetch("/api/cards", {
+    method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(out)
+  });
+  const body = await res.json();
+  if (!res.ok) {
+    setStatus(body.errors.join("\n"), true);
+    return;
+  }
+  for (const image of pendingImageDeletes) {
+    if (!out.some((c) => c.image === image)) await fetch(`/api/images/${image}`, { method: "DELETE" });
+  }
+  pendingImageDeletes.clear();
+  cards.forEach((c) => { delete c._new; delete c._idEdited; });
+  dirty = false;
+  $("save").disabled = true;
+  setStatus(`Saved ${body.saved} cards`);
+}
+
+$("save").onclick = save;
+document.addEventListener("keydown", (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key === "s") { e.preventDefault(); if (dirty) save(); }
+});
+window.addEventListener("beforeunload", (e) => { if (dirty) e.preventDefault(); });
+
+setupForm();
+setupImages();
+load();
+</script>
+</body>
+</html>

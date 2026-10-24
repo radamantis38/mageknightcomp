@@ -33,8 +33,9 @@ class CardRepository private constructor(context: Context) {
                     category = CardCategory.valueOf(item.getString("category")),
                     color = item.optStringOrNull("color")?.let { ManaColor.valueOf(it) },
                     elite = item.optBoolean("elite"),
-                    competitive = item.optBoolean("competitive"),
-                    copies = item.optInt("copies", 1),
+                    hero = item.optStringOrNull("hero"),
+                    number = if (item.isNull("number")) null else item.optInt("number"),
+                    night = item.optBoolean("night"),
                     text = item.optString("text"),
                     image = item.optStringOrNull("image")
                 )

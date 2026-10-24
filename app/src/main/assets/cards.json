@@ -308,7 +308,6 @@
     "name": "Fireball / Firestorm",
     "category": "SPELL",
     "color": "RED",
-    "competitive": false,
     "text": "",
     "image": null
   },
@@ -317,7 +316,6 @@
     "name": "Flame Wall / Flame Wave",
     "category": "SPELL",
     "color": "RED",
-    "competitive": false,
     "text": "",
     "image": null
   },
@@ -326,7 +324,6 @@
     "name": "Tremor / Earthquake",
     "category": "SPELL",
     "color": "RED",
-    "competitive": false,
     "text": "",
     "image": null
   },
@@ -335,7 +332,6 @@
     "name": "Burning Shield / Exploding Shield",
     "category": "SPELL",
     "color": "RED",
-    "competitive": false,
     "text": "",
     "image": null
   },
@@ -344,7 +340,6 @@
     "name": "Demolish / Disintegrate",
     "category": "SPELL",
     "color": "RED",
-    "competitive": false,
     "text": "",
     "image": null
   },
@@ -353,7 +348,6 @@
     "name": "Offering / Sacrifice",
     "category": "SPELL",
     "color": "RED",
-    "competitive": false,
     "text": "",
     "image": null
   },
@@ -362,7 +356,6 @@
     "name": "Snowstorm / Blizzard",
     "category": "SPELL",
     "color": "BLUE",
-    "competitive": false,
     "text": "",
     "image": null
   },
@@ -371,7 +364,6 @@
     "name": "Chill / Lethal Chill",
     "category": "SPELL",
     "color": "BLUE",
-    "competitive": false,
     "text": "",
     "image": null
   },
@@ -380,7 +372,6 @@
     "name": "Mist Form / Veil of Mist",
     "category": "SPELL",
     "color": "BLUE",
-    "competitive": false,
     "text": "",
     "image": null
   },
@@ -389,7 +380,6 @@
     "name": "Mana Bolt / Mana Thunderbolt",
     "category": "SPELL",
     "color": "BLUE",
-    "competitive": false,
     "text": "",
     "image": null
   },
@@ -398,7 +388,6 @@
     "name": "Space Bending / Time Bending",
     "category": "SPELL",
     "color": "BLUE",
-    "competitive": false,
     "text": "",
     "image": null
   },
@@ -407,7 +396,6 @@
     "name": "Underground Travel / Underground Attack",
     "category": "SPELL",
     "color": "GREEN",
-    "competitive": false,
     "text": "",
     "image": null
   },
@@ -416,7 +404,6 @@
     "name": "Restoration / Rebirth",
     "category": "SPELL",
     "color": "GREEN",
-    "competitive": false,
     "text": "",
     "image": null
   },
@@ -425,7 +412,6 @@
     "name": "Whirlwind / Tornado",
     "category": "SPELL",
     "color": "WHITE",
-    "competitive": false,
     "text": "",
     "image": null
   },
@@ -434,7 +420,6 @@
     "name": "Wings of Wind / Wings of Night",
     "category": "SPELL",
     "color": "WHITE",
-    "competitive": false,
     "text": "",
     "image": null
   },
@@ -443,7 +428,6 @@
     "name": "Expose / Mass Expose",
     "category": "SPELL",
     "color": "WHITE",
-    "competitive": false,
     "text": "",
     "image": null
   },
@@ -452,7 +436,6 @@
     "name": "Cure / Disease",
     "category": "SPELL",
     "color": "GREEN",
-    "competitive": false,
     "text": "",
     "image": null
   },
@@ -461,7 +444,6 @@
     "name": "Meditation / Trance",
     "category": "SPELL",
     "color": "GREEN",
-    "competitive": false,
     "text": "",
     "image": null
   },
@@ -470,7 +452,6 @@
     "name": "Call to Arms / Call to Glory",
     "category": "SPELL",
     "color": "WHITE",
-    "competitive": false,
     "text": "",
     "image": null
   },
@@ -479,7 +460,6 @@
     "name": "Mind Read / Mind Steal",
     "category": "SPELL",
     "color": "WHITE",
-    "competitive": true,
     "text": "",
     "image": null
   },
@@ -488,7 +468,6 @@
     "name": "Charm / Possess",
     "category": "SPELL",
     "color": "WHITE",
-    "competitive": false,
     "text": "",
     "image": null
   },
@@ -497,7 +476,6 @@
     "name": "Energy Flow / Energy Steal",
     "category": "SPELL",
     "color": "GREEN",
-    "competitive": true,
     "text": "",
     "image": null
   },
@@ -506,7 +484,6 @@
     "name": "Peasants",
     "category": "UNIT",
     "elite": false,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -515,7 +492,6 @@
     "name": "Foresters",
     "category": "UNIT",
     "elite": false,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -524,7 +500,6 @@
     "name": "Herbalist",
     "category": "UNIT",
     "elite": false,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -533,7 +508,6 @@
     "name": "Scouts",
     "category": "UNIT",
     "elite": false,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -542,7 +516,6 @@
     "name": "Thugs",
     "category": "UNIT",
     "elite": false,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -551,7 +524,6 @@
     "name": "Utem Crossbowmen",
     "category": "UNIT",
     "elite": false,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -560,7 +532,6 @@
     "name": "Utem Guardsmen",
     "category": "UNIT",
     "elite": false,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -569,7 +540,6 @@
     "name": "Utem Swordsmen",
     "category": "UNIT",
     "elite": false,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -578,7 +548,6 @@
     "name": "Guardian Golems",
     "category": "UNIT",
     "elite": false,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -587,7 +556,6 @@
     "name": "Illusionists",
     "category": "UNIT",
     "elite": false,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -596,7 +564,6 @@
     "name": "Shocktroops",
     "category": "UNIT",
     "elite": false,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -605,7 +572,6 @@
     "name": "Red Cape Monks",
     "category": "UNIT",
     "elite": false,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -614,7 +580,6 @@
     "name": "Northern Monks",
     "category": "UNIT",
     "elite": false,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -623,7 +588,6 @@
     "name": "Savage Monks",
     "category": "UNIT",
     "elite": false,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -632,7 +596,6 @@
     "name": "Magic Familiars",
     "category": "UNIT",
     "elite": false,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -641,7 +604,6 @@
     "name": "Fire Mages",
     "category": "UNIT",
     "elite": true,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -650,7 +612,6 @@
     "name": "Ice Mages",
     "category": "UNIT",
     "elite": true,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -659,7 +620,6 @@
     "name": "Fire Golems",
     "category": "UNIT",
     "elite": true,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -668,7 +628,6 @@
     "name": "Ice Golems",
     "category": "UNIT",
     "elite": true,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -677,7 +636,6 @@
     "name": "Sorcerers",
     "category": "UNIT",
     "elite": true,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -686,7 +644,6 @@
     "name": "Catapults",
     "category": "UNIT",
     "elite": true,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -695,7 +652,6 @@
     "name": "Amotep Gunners",
     "category": "UNIT",
     "elite": true,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -704,7 +660,6 @@
     "name": "Amotep Freezers",
     "category": "UNIT",
     "elite": true,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -713,7 +668,6 @@
     "name": "Heroes",
     "category": "UNIT",
     "elite": true,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -722,7 +676,6 @@
     "name": "Altem Mages",
     "category": "UNIT",
     "elite": true,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -731,7 +684,6 @@
     "name": "Altem Guardians",
     "category": "UNIT",
     "elite": true,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -740,7 +692,6 @@
     "name": "Delphana Masters",
     "category": "UNIT",
     "elite": true,
-    "copies": 1,
     "text": "",
     "image": null
   },
@@ -778,5 +729,113 @@
     "category": "ARTIFACT",
     "text": "Placeholder until the real base-game list is added",
     "image": null
+  },
+  {
+    "id": "tn1",
+    "name": "From the dusk",
+    "category": "TACTIC",
+    "number": 1,
+    "night": true,
+    "text": "",
+    "image": "tn1.jpg"
+  },
+  {
+    "id": "long_night",
+    "name": "Long night",
+    "category": "TACTIC",
+    "number": 2,
+    "night": true,
+    "text": "",
+    "image": "long_night.jpg"
+  },
+  {
+    "id": "mana_search",
+    "name": "Mana search",
+    "category": "TACTIC",
+    "number": 3,
+    "night": true,
+    "text": "",
+    "image": "mana_search.jpg"
+  },
+  {
+    "id": "midnight_meditation",
+    "name": "Midnight meditation",
+    "category": "TACTIC",
+    "number": 4,
+    "night": true,
+    "text": "",
+    "image": "midnight_meditation.jpg"
+  },
+  {
+    "id": "preparation",
+    "name": "Preparation",
+    "category": "TACTIC",
+    "number": 5,
+    "night": true,
+    "text": "",
+    "image": "preparation.jpg"
+  },
+  {
+    "id": "sparing_power",
+    "name": "Sparing power",
+    "category": "TACTIC",
+    "number": 6,
+    "night": true,
+    "text": "",
+    "image": "sparing_power.jpg"
+  },
+  {
+    "id": "early_bird",
+    "name": "Early bird",
+    "category": "TACTIC",
+    "number": 1,
+    "night": false,
+    "text": "",
+    "image": "early_bird.jpg"
+  },
+  {
+    "id": "rethink",
+    "name": "Rethink",
+    "category": "TACTIC",
+    "number": 2,
+    "night": false,
+    "text": "",
+    "image": "rethink.jpg"
+  },
+  {
+    "id": "mana_steal",
+    "name": "Mana steal",
+    "category": "TACTIC",
+    "number": 3,
+    "night": false,
+    "text": "",
+    "image": "mana_steal.jpg"
+  },
+  {
+    "id": "planning",
+    "name": "Planning",
+    "category": "TACTIC",
+    "number": 4,
+    "night": false,
+    "text": "",
+    "image": "planning.jpg"
+  },
+  {
+    "id": "great_start",
+    "name": "great start",
+    "category": "TACTIC",
+    "number": 5,
+    "night": false,
+    "text": "",
+    "image": "great_start.jpg"
+  },
+  {
+    "id": "the_right_moment",
+    "name": "The right moment",
+    "category": "TACTIC",
+    "number": 6,
+    "night": false,
+    "text": "",
+    "image": "the_right_moment.jpg"
   }
 ]

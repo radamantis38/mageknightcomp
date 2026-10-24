@@ -31,6 +31,11 @@ android {
     }
 }
 
+// Unit tests read assets/cards.json directly, so rerun them whenever the catalog changes
+tasks.withType<Test>().configureEach {
+    inputs.dir("src/main/assets")
+}
+
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

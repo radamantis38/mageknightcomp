@@ -34,9 +34,10 @@ class SoloGame private constructor(
     val dummyCrystals: MutableMap<ManaColor, Int>,
     dummyAnnouncedEnd: Boolean,
     lastDummyTurn: DummyTurn?,
-    val removedTactics: MutableSet<Tactic>,
-    playerTactic: Tactic?,
-    dummyTactic: Tactic?
+    /** Ids of the Tactics already used, which are out of the game. */
+    val removedTactics: MutableSet<String>,
+    playerTactic: String?,
+    dummyTactic: String?
 ) {
     var round = round
         private set
@@ -53,10 +54,17 @@ class SoloGame private constructor(
         private set
     var lastDummyTurn = lastDummyTurn
         private set
+    /** Id of the Tactic you picked this Round. */
     var playerTactic = playerTactic
         private set
+    /** Id of the Tactic the Dummy got this Round. */
     var dummyTactic = dummyTactic
         private set
+
+    /** The catalog's Tactics once all 12 are there, [DEFAULT_TACTICS] until then. */
+    private val tactics: List<Card> = catalog.values.filter { it.category == CardCategory.TACTIC }
+        .takeIf { list -> listOf(false, true).all { night -> list.count { it.night == night } == TACTICS_PER_TIME_OF_DAY } }
+        ?: DEFAULT_TACTICS
 
     /** Odd rounds are Day, even rounds are Night. */
     val isNight get() = round % 2 == 0
@@ -117,17 +125,21 @@ class SoloGame private constructor(
 
     // --- Tactics ------------------------------------------------------------------------------
 
+    /** The Tactic card with the given id. */
+    fun tactic(id: String): Card =
+        tactics.find { it.id == id } ?: DEFAULT_TACTICS.find { it.id == id } ?: error("Unknown Tactic $id")
+
     /** Tactics of the current Day or Night that can still be picked. */
-    fun availableTactics(): List<Tactic> = Tactic.entries.filter {
-        it.night == isNight && it !in removedTactics && it != playerTactic && it != dummyTactic
+    fun availableTactics(): List<Card> = tactics.filter {
+        it.night == isNight && it.id !in removedTactics && it.id != playerTactic && it.id != dummyTactic
     }
 
     /** In solo you always pick first; then the Dummy takes a random Tactic from the rest. */
-    fun chooseTactic(tactic: Tactic, random: Random = Random) {
+    fun chooseTactic(tactic: Card, random: Random = Random) {
         check(playerTactic == null) { "Tactic already chosen this round" }
         require(tactic in availableTactics())
-        playerTactic = tactic
-        dummyTactic = availableTactics().randomOrNull(random)
+        playerTactic = tactic.id
+        dummyTactic = availableTactics().randomOrNull(random)?.id
     }
 
     /** True when the player plays before the Dummy this Round. */
@@ -135,7 +147,7 @@ class SoloGame private constructor(
         get() {
             val mine = playerTactic ?: return null
             val dummy = dummyTactic ?: return true
-            return mine.number < dummy.number
+            return tactic(mine).number!! < tactic(dummy).number!!
         }
 
     // --- Dummy player -------------------------------------------------------------------------
@@ -251,27 +263,26 @@ class SoloGame private constructor(
                 .put("bonus", it.bonus.toJson())
                 .put("announcedEndOfRound", it.announcedEndOfRound)
         })
-        .put("removedTactics", JSONArray(removedTactics.map { it.name }))
-        .put("playerTactic", playerTactic?.name)
-        .put("dummyTactic", dummyTactic?.name)
+        .put("removedTactics", JSONArray(removedTactics))
+        .put("playerTactic", playerTactic)
+        .put("dummyTactic", dummyTactic)
 
     companion object {
         /** In a solo game the Unit offer has the number of players plus 2 cards. */
         const val UNITS_IN_OFFER = 3
         private const val CARDS_IN_OFFER = 3
 
-        /** Sets up a new solo game. [dummyCrystals] are the three colored dots on the Dummy's Hero card. */
+        /** Sets up a new solo game. The Dummy starts with the crystals shown on its Hero card. */
         fun start(
             catalog: List<Card>,
             playerHero: String,
             dummyHero: String,
-            dummyCrystals: List<ManaColor>,
             random: Random = Random
         ): SoloGame {
             fun deck(filter: (Card) -> Boolean) = shuffledDeck(catalog, random, filter)
 
             val aaDeck = deck { it.category == CardCategory.ADVANCED_ACTION }
-            val spellDeck = deck { it.category == CardCategory.SPELL && !it.competitive }
+            val spellDeck = deck { it.category == CardCategory.SPELL }
             return SoloGame(
                 catalog = catalog.associateBy { it.id },
                 playerHero = playerHero,
@@ -288,9 +299,9 @@ class SoloGame private constructor(
                 monasteries = 0,
                 coreTileRevealed = false,
                 conqueredCities = mutableSetOf(),
-                dummyDeck = BASIC_ACTIONS.shuffled(random).toMutableList(),
+                dummyDeck = startingDeck(catalog, dummyHero).shuffled(random).toMutableList(),
                 dummyDiscard = mutableListOf(),
-                dummyCrystals = dummyCrystals.groupingBy { it }.eachCount().toMutableMap(),
+                dummyCrystals = HERO_CRYSTALS.getValue(dummyHero).groupingBy { it }.eachCount().toMutableMap(),
                 dummyAnnouncedEnd = false,
                 lastDummyTurn = null,
                 removedTactics = mutableSetOf(),
@@ -301,7 +312,8 @@ class SoloGame private constructor(
 
         fun fromJson(json: JSONObject, catalog: List<Card>): SoloGame {
             fun ids(key: String) = json.getJSONArray(key).let { a -> MutableList(a.length()) { a.getString(it) } }
-            fun tactic(key: String) = json.optString(key).ifBlank { null }?.let { Tactic.valueOf(it) }
+            // Older saves stored Tactics as names like "PLANNING"; the id is the same in lowercase
+            fun tactic(key: String) = json.optString(key).ifBlank { null }?.lowercase()
             val crystals = json.getJSONObject("dummyCrystals")
             return SoloGame(
                 catalog = catalog.associateBy { it.id },
@@ -336,15 +348,23 @@ class SoloGame private constructor(
                         it.getBoolean("announcedEndOfRound")
                     )
                 },
-                removedTactics = ids("removedTactics").map { Tactic.valueOf(it) }.toMutableSet(),
+                removedTactics = ids("removedTactics").map { it.lowercase() }.toMutableSet(),
                 playerTactic = tactic("playerTactic"),
                 dummyTactic = tactic("dummyTactic")
             )
         }
 
+        /**
+         * The Hero's Basic Actions from the catalog, or [BASIC_ACTIONS] while that Hero's deck
+         * has not been fully added yet.
+         */
+        fun startingDeck(catalog: List<Card>, hero: String): List<DummyCard> =
+            catalog.filter { it.category == CardCategory.BASIC_ACTION && it.hero == hero }
+                .map { DummyCard(it.name, it.color!!) }
+                .takeIf { it.size == BASIC_ACTIONS.size } ?: BASIC_ACTIONS
+
         private fun shuffledDeck(catalog: List<Card>, random: Random, filter: (Card) -> Boolean) =
-            catalog.filter(filter).flatMap { card -> List(card.copies) { card.id } }
-                .shuffled(random).toMutableList()
+            catalog.filter(filter).map { it.id }.shuffled(random).toMutableList()
 
         private fun MutableList<String>.takeFrom(count: Int): MutableList<String> =
             MutableList(minOf(count, size)) { removeAt(0) }

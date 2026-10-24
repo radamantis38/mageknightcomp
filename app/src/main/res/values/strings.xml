@@ -36,7 +36,9 @@
 
     <string name="monasteries">Unburned monasteries: %d</string>
     <string name="core_tile_revealed">Core tile revealed (Elite Units)</string>
+    <string name="basic_actions">Basic Actions</string>
     <string name="artifacts">Artifacts</string>
+    <string name="tactics">Tactics</string>
     <string name="gain_artifact">Gain Artifacts (draw that many + 1)</string>
     <string name="how_many_artifacts">How many Artifacts did you gain?</string>
     <string name="choose_artifact_to_return">Choose one to put at the bottom of the deck</string>
@@ -63,8 +65,8 @@
 
     <string name="choose_tactic">Choose your Tactic (you pick first)</string>
     <string name="tactic_label">%1$d · %2$s</string>
-    <string name="your_tactic">Your Tactic: %s</string>
-    <string name="dummy_tactic">Dummy Tactic: %s</string>
+    <string name="your_tactic">Your Tactic · %d</string>
+    <string name="dummy_tactic">Dummy Tactic · %d</string>
     <string name="you_go_first">You go first</string>
     <string name="dummy_goes_first">The Dummy goes first</string>
     <string name="no_tactics_left">No Tactics left</string>
@@ -79,6 +81,5 @@
     <string name="start">Start</string>
     <string name="your_hero">Your Hero</string>
     <string name="dummy_hero_label">Dummy Hero (random)</string>
-    <string name="dummy_crystals_label">Dummy crystals (the 3 dots at the bottom of its Hero card)</string>
     <string name="no_game">No game in progress</string>
 </resources>
