@@ -1,21 +1,26 @@
 package com.hermit.mageknightcompa.ui.main
 
+import android.app.Dialog
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.hermit.mageknightcompa.R
 import com.hermit.mageknightcompa.data.Card
 import com.hermit.mageknightcompa.data.CardCategory
+import com.hermit.mageknightcompa.databinding.DialogCardPreviewBinding
 import com.hermit.mageknightcompa.databinding.FragmentOffersBinding
 import com.hermit.mageknightcompa.game.City
 import com.hermit.mageknightcompa.game.SoloGame
@@ -32,17 +37,17 @@ class OffersFragment : Fragment() {
         val binding = FragmentOffersBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(requireActivity())[GameViewModel::class.java]
 
-        val aaAdapter = CardRowAdapter { index ->
+        val aaAdapter = CardGridAdapter { index ->
             confirmTake(viewModel.game.value?.aaOffer?.get(index), R.string.take_aa_message) {
                 takeAdvancedAction(index)
             }
         }
-        val spellAdapter = CardRowAdapter { index ->
+        val spellAdapter = CardGridAdapter { index ->
             confirmTake(viewModel.game.value?.spellOffer?.get(index), R.string.take_spell_message) {
                 takeSpell(index)
             }
         }
-        val unitAdapter = CardRowAdapter { index ->
+        val unitAdapter = CardGridAdapter { index ->
             val id = viewModel.game.value?.unitOffer?.get(index)
             val isMonasteryCard = id != null && viewModel.game.value!!.card(id).category == CardCategory.ADVANCED_ACTION
             val message = if (isMonasteryCard) R.string.take_monastery_message else R.string.take_unit_message
@@ -174,18 +179,32 @@ class OffersFragment : Fragment() {
         adapter = CardRowAdapter(onClick).apply { rows = cards.map { CardRow(it, "") } }
     }
 
+    /** Shows the card full screen, with what taking it does and a button to take it. */
     private fun confirmTake(id: String?, @StringRes message: Int, take: SoloGame.() -> Card) {
         val game = viewModel.game.value ?: return
         val card = game.card(id ?: return)
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle(getString(R.string.take_card_title, card.name))
-            .setMessage(message)
-            .setPositiveButton(R.string.take) { _, _ ->
+        val dialog = Dialog(requireContext(), android.R.style.Theme_Black_NoTitleBar_Fullscreen)
+        val binding = DialogCardPreviewBinding.inflate(layoutInflater)
+        with(binding) {
+            nameView.text = card.name
+            messageView.setText(message)
+            imageView.contentDescription = card.name
+            if (card.image != null) {
+                imageView.load("file:///android_asset/cards/${card.image}")
+            } else {
+                // Without a picture the card's color fills its place, keeping the buttons within reach
+                imageView.setBackgroundColor(card.color?.let { ContextCompat.getColor(requireContext(), it.colorRes) } ?: Color.DKGRAY)
+            }
+            imageView.setOnClickListener { dialog.dismiss() }
+            closeButton.setOnClickListener { dialog.dismiss() }
+            takeButton.setOnClickListener {
+                dialog.dismiss()
                 viewModel.update(take)
                 view?.let { Snackbar.make(it, getString(R.string.taken, card.name), Snackbar.LENGTH_SHORT).show() }
             }
-            .setNegativeButton(R.string.cancel, null)
-            .show()
+        }
+        dialog.setContentView(binding.root)
+        dialog.show()
     }
 
     companion object {

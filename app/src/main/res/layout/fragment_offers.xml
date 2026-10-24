@@ -22,7 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="false"
-            app:layoutManager="LinearLayoutManager" />
+            app:layoutManager="GridLayoutManager"
+            app:spanCount="3" />
 
         <TextView
             android:id="@+id/spellHeader"
@@ -35,7 +36,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="false"
-            app:layoutManager="LinearLayoutManager" />
+            app:layoutManager="GridLayoutManager"
+            app:spanCount="3" />
 
         <TextView
             android:id="@+id/unitHeader"
@@ -48,7 +50,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="false"
-            app:layoutManager="LinearLayoutManager" />
+            app:layoutManager="GridLayoutManager"
+            app:spanCount="3" />
 
         <TextView
             android:id="@+id/artifactHeader"

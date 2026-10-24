@@ -27,7 +27,7 @@
 
     <string name="take">Take</string>
     <string name="cancel">Cancel</string>
-    <string name="take_card_title">Take %s?</string>
+    <string name="close">Close</string>
     <string name="take_aa_message">The offer is replenished: the other cards move down and a new one enters at the top.</string>
     <string name="take_spell_message">Mage tower or Blue city: 7 Influence + 1 mana of the Spell\'s color. The offer is replenished.</string>
     <string name="take_unit_message">The Unit offer is not replenished until the next Round.</string>
