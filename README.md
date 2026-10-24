@@ -65,6 +65,12 @@ Requires JDK 17 and the Android SDK (minSdk 23).
 ./gradlew testDebugUnitTest   # run the unit tests
 ```
 
+To build an APK you can share, without the card pictures:
+
+```sh
+./gradlew assembleDebug -PwithoutCardImages
+```
+
 ## Rules reference
 
 The offer and Dummy rules follow the solo game rules in the Mage Knight Ultimate Edition

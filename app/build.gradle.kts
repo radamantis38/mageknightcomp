@@ -29,6 +29,12 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    // Card pictures are for personal use: build with -PwithoutCardImages for an APK to share
+    if (providers.gradleProperty("withoutCardImages").isPresent) {
+        androidResources {
+            ignoreAssetsPattern = "!<dir>cards:!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~"
+        }
+    }
 }
 
 // Unit tests read assets/cards.json directly, so rerun them whenever the catalog changes

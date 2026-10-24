@@ -9,11 +9,14 @@ class CardRepository private constructor(context: Context) {
 
     val cards: List<Card> by lazy {
         val json = context.assets.open(CATALOG_FILE).bufferedReader().use { it.readText() }
-        parse(json)
+        // Builds without card pictures still list them in the catalog: show those cards without one
+        val images = context.assets.list(IMAGE_DIR).orEmpty().toSet()
+        parse(json).map { if (it.image in images) it else it.copy(image = null) }
     }
 
     companion object {
         private const val CATALOG_FILE = "cards.json"
+        private const val IMAGE_DIR = "cards"
 
         @Volatile
         private var instance: CardRepository? = null
