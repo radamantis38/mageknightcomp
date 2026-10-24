@@ -36,6 +36,7 @@ class RoundFragment : Fragment() {
             if (game.playerTactic == null) {
                 val tactic = game.availableTactics()[index]
                 viewModel.update { chooseTactic(tactic) }
+                announceTurnOrder(viewModel)
             }
         }
         binding.tacticList.adapter = tacticAdapter
@@ -79,6 +80,17 @@ class RoundFragment : Fragment() {
             crystal?.let { getString(it.labelRes).lowercase() } ?: "—"
         )
         view?.let { Snackbar.make(it, message, Snackbar.LENGTH_LONG).show() }
+    }
+
+    /** Pops up who starts the Round, and which Tactic the Dummy got. */
+    private fun announceTurnOrder(viewModel: GameViewModel) {
+        val game = viewModel.game.value ?: return
+        val dummy = game.dummyTactic?.let(game::tactic)
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(if (game.playerGoesFirst == true) R.string.you_go_first else R.string.dummy_goes_first)
+            .apply { dummy?.let { setMessage(getString(R.string.dummy_took_tactic, it.name, it.number)) } }
+            .setPositiveButton(R.string.ok, null)
+            .show()
     }
 
     private fun timeOfDay(night: Boolean) = getString(if (night) R.string.night else R.string.day)

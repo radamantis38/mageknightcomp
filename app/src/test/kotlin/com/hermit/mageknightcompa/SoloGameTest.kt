@@ -196,6 +196,12 @@ class SoloGameTest {
         assertEquals(setOf(City.GREEN), SoloGame.fromJson(json, catalog).conqueredCities)
     }
 
+    @Test(expected = IllegalArgumentException::class)
+    fun rejectsSavesWithCardsNoLongerInTheCatalog() {
+        val game = newGame()
+        SoloGame.fromJson(game.toJson(), catalog.filter { it.id != game.spellOffer.first() })
+    }
+
     @Test
     fun gainingAnArtifactDrawsTwoAndReturnsOneToTheBottom() {
         val game = newGame()

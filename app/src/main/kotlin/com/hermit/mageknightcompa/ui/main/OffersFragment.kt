@@ -5,8 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.switchmaterial.SwitchMaterial
@@ -141,23 +144,34 @@ class OffersFragment : Fragment() {
             showKeptArtifacts(viewModel.update { gainArtifacts(count, null) }.orEmpty())
             return
         }
-        MaterialAlertDialogBuilder(requireContext())
+        lateinit var dialog: AlertDialog
+        val list = cardList(drawn) { i ->
+            dialog.dismiss()
+            showKeptArtifacts(viewModel.update { gainArtifacts(count, drawn[i].id) }.orEmpty())
+        }
+        dialog = MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.choose_artifact_to_return)
-            .setItems(drawn.map { it.name }.toTypedArray()) { _, i ->
-                showKeptArtifacts(viewModel.update { gainArtifacts(count, drawn[i].id) }.orEmpty())
-            }
+            .setView(list)
             .setNegativeButton(R.string.cancel, null)
             .show()
     }
 
     private fun showKeptArtifacts(kept: List<Card>) {
         MaterialAlertDialogBuilder(requireContext())
-            .setMessage(
-                if (kept.isEmpty()) getString(R.string.artifact_deck_empty)
-                else getString(R.string.artifacts_kept, kept.joinToString { it.name })
-            )
+            .apply {
+                if (kept.isEmpty()) setMessage(R.string.artifact_deck_empty)
+                else setTitle(R.string.artifacts_kept_title).setView(cardList(kept) {})
+            }
             .setPositiveButton(R.string.ok, null)
             .show()
+    }
+
+    /** The [cards] with their pictures, for a dialog. */
+    private fun cardList(cards: List<Card>, onClick: (Int) -> Unit) = RecyclerView(requireContext()).apply {
+        val padding = resources.getDimensionPixelSize(R.dimen.activity_horizontal_margin)
+        setPadding(padding, padding / 2, padding, 0)
+        layoutManager = LinearLayoutManager(context)
+        adapter = CardRowAdapter(onClick).apply { rows = cards.map { CardRow(it, "") } }
     }
 
     private fun confirmTake(id: String?, @StringRes message: Int, take: SoloGame.() -> Card) {

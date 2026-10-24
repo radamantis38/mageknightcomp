@@ -13,7 +13,7 @@ import com.hermit.mageknightcompa.R
 import com.hermit.mageknightcompa.databinding.DialogNewGameBinding
 import com.hermit.mageknightcompa.game.HEROES
 
-/** Sets up a solo game: your Hero and a random other Hero for the Dummy. */
+/** Sets up a solo game: random, different Heroes for you and the Dummy, which can be changed. */
 class NewGameDialogFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -25,7 +25,10 @@ class NewGameDialogFragment : DialogFragment() {
         }
         binding.playerHero.setItems(HEROES)
         binding.dummyHero.setItems(HEROES)
-        binding.dummyHero.setSelection(HEROES.indices.random())
+        // Both Heroes start out random (and different); either can still be changed
+        val (player, dummy) = HEROES.indices.shuffled().take(2)
+        binding.playerHero.setSelection(player)
+        binding.dummyHero.setSelection(dummy)
 
         // The Dummy must be a Hero nobody is playing
         binding.playerHero.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

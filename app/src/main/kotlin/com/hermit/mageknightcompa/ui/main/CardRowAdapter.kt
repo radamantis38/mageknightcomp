@@ -38,6 +38,7 @@ class CardRowAdapter(private val onClick: (Int) -> Unit) :
         with(viewHolder.binding) {
             nameView.text = card.name
             textView.text = detail
+            textView.visibility = if (detail.isEmpty()) View.GONE else View.VISIBLE
             colorSwatch.visibility = if (card.color != null) View.VISIBLE else View.INVISIBLE
             card.color?.let { colorSwatch.setBackgroundColor(ContextCompat.getColor(root.context, it.colorRes)) }
             imageView.contentDescription = card.name

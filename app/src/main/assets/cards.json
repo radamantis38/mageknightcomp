@@ -5,7 +5,7 @@
     "category": "ADVANCED_ACTION",
     "color": "RED",
     "text": "",
-    "image": null
+    "image": "blood_rage.jpg"
   },
   {
     "id": "intimidate",
@@ -13,7 +13,7 @@
     "category": "ADVANCED_ACTION",
     "color": "RED",
     "text": "",
-    "image": null
+    "image": "intimidate.jpg"
   },
   {
     "id": "blood_ritual",
@@ -21,7 +21,7 @@
     "category": "ADVANCED_ACTION",
     "color": "RED",
     "text": "",
-    "image": null
+    "image": "blood_ritual.jpg"
   },
   {
     "id": "into_the_heat",
@@ -29,7 +29,7 @@
     "category": "ADVANCED_ACTION",
     "color": "RED",
     "text": "",
-    "image": null
+    "image": "into_the_heat.jpg"
   },
   {
     "id": "decompose",
@@ -37,7 +37,7 @@
     "category": "ADVANCED_ACTION",
     "color": "RED",
     "text": "",
-    "image": null
+    "image": "decompose.jpg"
   },
   {
     "id": "maximal_effect",
@@ -45,39 +45,7 @@
     "category": "ADVANCED_ACTION",
     "color": "RED",
     "text": "",
-    "image": null
-  },
-  {
-    "id": "counterattack",
-    "name": "Counterattack",
-    "category": "ADVANCED_ACTION",
-    "color": "RED",
-    "text": "",
-    "image": null
-  },
-  {
-    "id": "ritual_attack",
-    "name": "Ritual Attack",
-    "category": "ADVANCED_ACTION",
-    "color": "RED",
-    "text": "",
-    "image": null
-  },
-  {
-    "id": "blood_of_ancients",
-    "name": "Blood of Ancients",
-    "category": "ADVANCED_ACTION",
-    "color": "RED",
-    "text": "",
-    "image": null
-  },
-  {
-    "id": "explosive_bolt",
-    "name": "Explosive Bolt",
-    "category": "ADVANCED_ACTION",
-    "color": "RED",
-    "text": "",
-    "image": null
+    "image": "maximal_effect.jpg"
   },
   {
     "id": "fire_bolt",
@@ -85,7 +53,7 @@
     "category": "ADVANCED_ACTION",
     "color": "RED",
     "text": "",
-    "image": null
+    "image": "fire_bolt.jpg"
   },
   {
     "id": "ice_bolt",
@@ -93,7 +61,7 @@
     "category": "ADVANCED_ACTION",
     "color": "BLUE",
     "text": "",
-    "image": null
+    "image": "ice_bolt.jpg"
   },
   {
     "id": "ice_shield",
@@ -101,7 +69,7 @@
     "category": "ADVANCED_ACTION",
     "color": "BLUE",
     "text": "",
-    "image": null
+    "image": "ice_shield.jpg"
   },
   {
     "id": "frost_bridge",
@@ -109,7 +77,7 @@
     "category": "ADVANCED_ACTION",
     "color": "BLUE",
     "text": "",
-    "image": null
+    "image": "frost_bridge.jpg"
   },
   {
     "id": "pure_magic",
@@ -117,7 +85,7 @@
     "category": "ADVANCED_ACTION",
     "color": "BLUE",
     "text": "",
-    "image": null
+    "image": "pure_magic.jpg"
   },
   {
     "id": "steady_tempo",
@@ -125,7 +93,7 @@
     "category": "ADVANCED_ACTION",
     "color": "BLUE",
     "text": "",
-    "image": null
+    "image": "steady_tempo.jpg"
   },
   {
     "id": "crystal_mastery",
@@ -133,7 +101,7 @@
     "category": "ADVANCED_ACTION",
     "color": "BLUE",
     "text": "",
-    "image": null
+    "image": "crystal_mastery.jpg"
   },
   {
     "id": "magic_talent",
@@ -141,31 +109,7 @@
     "category": "ADVANCED_ACTION",
     "color": "BLUE",
     "text": "",
-    "image": null
-  },
-  {
-    "id": "shield_bash",
-    "name": "Shield Bash",
-    "category": "ADVANCED_ACTION",
-    "color": "BLUE",
-    "text": "",
-    "image": null
-  },
-  {
-    "id": "temporal_portal",
-    "name": "Temporal Portal",
-    "category": "ADVANCED_ACTION",
-    "color": "BLUE",
-    "text": "",
-    "image": null
-  },
-  {
-    "id": "spell_forge",
-    "name": "Spell Forge",
-    "category": "ADVANCED_ACTION",
-    "color": "BLUE",
-    "text": "",
-    "image": null
+    "image": "magic_talent.jpg"
   },
   {
     "id": "agility",
@@ -173,7 +117,7 @@
     "category": "ADVANCED_ACTION",
     "color": "WHITE",
     "text": "",
-    "image": null
+    "image": "agility.jpg"
   },
   {
     "id": "song_of_wind",
@@ -181,7 +125,7 @@
     "category": "ADVANCED_ACTION",
     "color": "WHITE",
     "text": "",
-    "image": null
+    "image": "song_of_wind.jpg"
   },
   {
     "id": "heroic_tale",
@@ -189,7 +133,7 @@
     "category": "ADVANCED_ACTION",
     "color": "WHITE",
     "text": "",
-    "image": null
+    "image": "heroic_tale.jpg"
   },
   {
     "id": "diplomacy",
@@ -197,7 +141,7 @@
     "category": "ADVANCED_ACTION",
     "color": "WHITE",
     "text": "",
-    "image": null
+    "image": "diplomacy.jpg"
   },
   {
     "id": "mana_storm",
@@ -205,7 +149,7 @@
     "category": "ADVANCED_ACTION",
     "color": "WHITE",
     "text": "",
-    "image": null
+    "image": "mana_storm.jpg"
   },
   {
     "id": "learning",
@@ -213,15 +157,7 @@
     "category": "ADVANCED_ACTION",
     "color": "WHITE",
     "text": "",
-    "image": null
-  },
-  {
-    "id": "chivalry",
-    "name": "Chivalry",
-    "category": "ADVANCED_ACTION",
-    "color": "WHITE",
-    "text": "",
-    "image": null
+    "image": "learning.jpg"
   },
   {
     "id": "path_finding",
@@ -229,7 +165,7 @@
     "category": "ADVANCED_ACTION",
     "color": "GREEN",
     "text": "",
-    "image": null
+    "image": "path_finding.jpg"
   },
   {
     "id": "regeneration",
@@ -237,7 +173,7 @@
     "category": "ADVANCED_ACTION",
     "color": "GREEN",
     "text": "",
-    "image": null
+    "image": "regeneration.jpg"
   },
   {
     "id": "in_need",
@@ -245,7 +181,7 @@
     "category": "ADVANCED_ACTION",
     "color": "GREEN",
     "text": "",
-    "image": null
+    "image": "in_need.jpg"
   },
   {
     "id": "ambush",
@@ -253,7 +189,7 @@
     "category": "ADVANCED_ACTION",
     "color": "GREEN",
     "text": "",
-    "image": null
+    "image": "ambush.jpg"
   },
   {
     "id": "training",
@@ -261,39 +197,7 @@
     "category": "ADVANCED_ACTION",
     "color": "GREEN",
     "text": "",
-    "image": null
-  },
-  {
-    "id": "stout_resolve",
-    "name": "Stout Resolve",
-    "category": "ADVANCED_ACTION",
-    "color": "GREEN",
-    "text": "",
-    "image": null
-  },
-  {
-    "id": "force_of_nature",
-    "name": "Force of Nature",
-    "category": "ADVANCED_ACTION",
-    "color": "GREEN",
-    "text": "",
-    "image": null
-  },
-  {
-    "id": "mountain_lore",
-    "name": "Mountain Lore",
-    "category": "ADVANCED_ACTION",
-    "color": "GREEN",
-    "text": "",
-    "image": null
-  },
-  {
-    "id": "power_of_crystals",
-    "name": "Power of Crystals",
-    "category": "ADVANCED_ACTION",
-    "color": "GREEN",
-    "text": "",
-    "image": null
+    "image": "training.jpg"
   },
   {
     "id": "refreshing_walk",
@@ -301,7 +205,7 @@
     "category": "ADVANCED_ACTION",
     "color": "GREEN",
     "text": "",
-    "image": null
+    "image": "refreshing_walk.jpg"
   },
   {
     "id": "fireball",
@@ -309,7 +213,7 @@
     "category": "SPELL",
     "color": "RED",
     "text": "",
-    "image": null
+    "image": "fireball.jpg"
   },
   {
     "id": "flame_wall",
@@ -317,15 +221,15 @@
     "category": "SPELL",
     "color": "RED",
     "text": "",
-    "image": null
+    "image": "flame_wall.jpg"
   },
   {
     "id": "tremor",
     "name": "Tremor / Earthquake",
     "category": "SPELL",
-    "color": "RED",
+    "color": "GREEN",
     "text": "",
-    "image": null
+    "image": "tremor.jpg"
   },
   {
     "id": "burning_shield",
@@ -333,7 +237,7 @@
     "category": "SPELL",
     "color": "RED",
     "text": "",
-    "image": null
+    "image": "burning_shield.jpg"
   },
   {
     "id": "demolish",
@@ -341,15 +245,7 @@
     "category": "SPELL",
     "color": "RED",
     "text": "",
-    "image": null
-  },
-  {
-    "id": "offering",
-    "name": "Offering / Sacrifice",
-    "category": "SPELL",
-    "color": "RED",
-    "text": "",
-    "image": null
+    "image": "demolish.jpg"
   },
   {
     "id": "snowstorm",
@@ -357,7 +253,7 @@
     "category": "SPELL",
     "color": "BLUE",
     "text": "",
-    "image": null
+    "image": "snowstorm.jpg"
   },
   {
     "id": "chill",
@@ -365,15 +261,7 @@
     "category": "SPELL",
     "color": "BLUE",
     "text": "",
-    "image": null
-  },
-  {
-    "id": "mist_form",
-    "name": "Mist Form / Veil of Mist",
-    "category": "SPELL",
-    "color": "BLUE",
-    "text": "",
-    "image": null
+    "image": "chill.jpg"
   },
   {
     "id": "mana_bolt",
@@ -381,7 +269,7 @@
     "category": "SPELL",
     "color": "BLUE",
     "text": "",
-    "image": null
+    "image": "mana_bolt.jpg"
   },
   {
     "id": "space_bending",
@@ -389,7 +277,7 @@
     "category": "SPELL",
     "color": "BLUE",
     "text": "",
-    "image": null
+    "image": "space_bending.jpg"
   },
   {
     "id": "underground_travel",
@@ -397,7 +285,7 @@
     "category": "SPELL",
     "color": "GREEN",
     "text": "",
-    "image": null
+    "image": "underground_travel.jpg"
   },
   {
     "id": "restoration",
@@ -405,7 +293,7 @@
     "category": "SPELL",
     "color": "GREEN",
     "text": "",
-    "image": null
+    "image": "restoration.jpg"
   },
   {
     "id": "whirlwind",
@@ -413,7 +301,7 @@
     "category": "SPELL",
     "color": "WHITE",
     "text": "",
-    "image": null
+    "image": "whirlwind.jpg"
   },
   {
     "id": "wings_of_wind",
@@ -421,7 +309,7 @@
     "category": "SPELL",
     "color": "WHITE",
     "text": "",
-    "image": null
+    "image": "wings_of_wind.jpg"
   },
   {
     "id": "expose",
@@ -429,15 +317,7 @@
     "category": "SPELL",
     "color": "WHITE",
     "text": "",
-    "image": null
-  },
-  {
-    "id": "cure",
-    "name": "Cure / Disease",
-    "category": "SPELL",
-    "color": "GREEN",
-    "text": "",
-    "image": null
+    "image": "expose.jpg"
   },
   {
     "id": "meditation",
@@ -445,7 +325,7 @@
     "category": "SPELL",
     "color": "GREEN",
     "text": "",
-    "image": null
+    "image": "meditation.jpg"
   },
   {
     "id": "call_to_arms",
@@ -453,31 +333,7 @@
     "category": "SPELL",
     "color": "WHITE",
     "text": "",
-    "image": null
-  },
-  {
-    "id": "mind_read",
-    "name": "Mind Read / Mind Steal",
-    "category": "SPELL",
-    "color": "WHITE",
-    "text": "",
-    "image": null
-  },
-  {
-    "id": "charm",
-    "name": "Charm / Possess",
-    "category": "SPELL",
-    "color": "WHITE",
-    "text": "",
-    "image": null
-  },
-  {
-    "id": "energy_flow",
-    "name": "Energy Flow / Energy Steal",
-    "category": "SPELL",
-    "color": "GREEN",
-    "text": "",
-    "image": null
+    "image": "call_to_arms.jpg"
   },
   {
     "id": "peasants",
@@ -485,7 +341,23 @@
     "category": "UNIT",
     "elite": false,
     "text": "",
-    "image": null
+    "image": "peasants.jpg"
+  },
+  {
+    "id": "peasants_2",
+    "name": "Peasants",
+    "category": "UNIT",
+    "elite": false,
+    "text": "",
+    "image": "peasants_2.jpg"
+  },
+  {
+    "id": "peasants_3",
+    "name": "Peasants",
+    "category": "UNIT",
+    "elite": false,
+    "text": "",
+    "image": "peasants_3.jpg"
   },
   {
     "id": "foresters",
@@ -493,7 +365,15 @@
     "category": "UNIT",
     "elite": false,
     "text": "",
-    "image": null
+    "image": "foresters.jpg"
+  },
+  {
+    "id": "foresters_2",
+    "name": "Foresters",
+    "category": "UNIT",
+    "elite": false,
+    "text": "",
+    "image": "foresters_2.jpg"
   },
   {
     "id": "herbalist",
@@ -501,23 +381,15 @@
     "category": "UNIT",
     "elite": false,
     "text": "",
-    "image": null
+    "image": "herbalist.jpg"
   },
   {
-    "id": "scouts",
-    "name": "Scouts",
+    "id": "herbalist_2",
+    "name": "Herbalist",
     "category": "UNIT",
     "elite": false,
     "text": "",
-    "image": null
-  },
-  {
-    "id": "thugs",
-    "name": "Thugs",
-    "category": "UNIT",
-    "elite": false,
-    "text": "",
-    "image": null
+    "image": "herbalist_2.jpg"
   },
   {
     "id": "utem_crossbowmen",
@@ -525,7 +397,15 @@
     "category": "UNIT",
     "elite": false,
     "text": "",
-    "image": null
+    "image": "utem_crossbowmen.jpg"
+  },
+  {
+    "id": "utem_crossbowmen_2",
+    "name": "Utem Crossbowmen",
+    "category": "UNIT",
+    "elite": false,
+    "text": "",
+    "image": "utem_crossbowmen_2.jpg"
   },
   {
     "id": "utem_guardsmen",
@@ -533,7 +413,15 @@
     "category": "UNIT",
     "elite": false,
     "text": "",
-    "image": null
+    "image": "utem_guardsmen.jpg"
+  },
+  {
+    "id": "utem_guardsmen_2",
+    "name": "Utem Guardsmen",
+    "category": "UNIT",
+    "elite": false,
+    "text": "",
+    "image": "utem_guardsmen_2.jpg"
   },
   {
     "id": "utem_swordsmen",
@@ -541,7 +429,15 @@
     "category": "UNIT",
     "elite": false,
     "text": "",
-    "image": null
+    "image": "utem_swordsmen.jpg"
+  },
+  {
+    "id": "utem_swordsmen_2",
+    "name": "Utem Swordsmen",
+    "category": "UNIT",
+    "elite": false,
+    "text": "",
+    "image": "utem_swordsmen_2.jpg"
   },
   {
     "id": "guardian_golems",
@@ -549,7 +445,15 @@
     "category": "UNIT",
     "elite": false,
     "text": "",
-    "image": null
+    "image": "guardian_golems.jpg"
+  },
+  {
+    "id": "guardian_golems_2",
+    "name": "Guardian Golems",
+    "category": "UNIT",
+    "elite": false,
+    "text": "",
+    "image": "guardian_golems_2.jpg"
   },
   {
     "id": "illusionists",
@@ -557,15 +461,15 @@
     "category": "UNIT",
     "elite": false,
     "text": "",
-    "image": null
+    "image": "illusionists.jpg"
   },
   {
-    "id": "shocktroops",
-    "name": "Shocktroops",
+    "id": "illusionists_2",
+    "name": "Illusionists",
     "category": "UNIT",
     "elite": false,
     "text": "",
-    "image": null
+    "image": "illusionists_2.jpg"
   },
   {
     "id": "red_cape_monks",
@@ -573,7 +477,7 @@
     "category": "UNIT",
     "elite": false,
     "text": "",
-    "image": null
+    "image": "red_cape_monks.jpg"
   },
   {
     "id": "northern_monks",
@@ -581,7 +485,7 @@
     "category": "UNIT",
     "elite": false,
     "text": "",
-    "image": null
+    "image": "northern_monks.jpg"
   },
   {
     "id": "savage_monks",
@@ -589,15 +493,7 @@
     "category": "UNIT",
     "elite": false,
     "text": "",
-    "image": null
-  },
-  {
-    "id": "magic_familiars",
-    "name": "Magic Familiars",
-    "category": "UNIT",
-    "elite": false,
-    "text": "",
-    "image": null
+    "image": "savage_monks.jpg"
   },
   {
     "id": "fire_mages",
@@ -605,7 +501,15 @@
     "category": "UNIT",
     "elite": true,
     "text": "",
-    "image": null
+    "image": "fire_mages.jpg"
+  },
+  {
+    "id": "fire_mages_2",
+    "name": "Fire Mages",
+    "category": "UNIT",
+    "elite": true,
+    "text": "",
+    "image": "fire_mages_2.jpg"
   },
   {
     "id": "ice_mages",
@@ -613,7 +517,15 @@
     "category": "UNIT",
     "elite": true,
     "text": "",
-    "image": null
+    "image": "ice_mages.jpg"
+  },
+  {
+    "id": "ice_mages_2",
+    "name": "Ice Mages",
+    "category": "UNIT",
+    "elite": true,
+    "text": "",
+    "image": "ice_mages_2.jpg"
   },
   {
     "id": "fire_golems",
@@ -621,7 +533,15 @@
     "category": "UNIT",
     "elite": true,
     "text": "",
-    "image": null
+    "image": "fire_golems.jpg"
+  },
+  {
+    "id": "fire_golems_2",
+    "name": "Fire Golems",
+    "category": "UNIT",
+    "elite": true,
+    "text": "",
+    "image": "fire_golems_2.jpg"
   },
   {
     "id": "ice_golems",
@@ -629,15 +549,15 @@
     "category": "UNIT",
     "elite": true,
     "text": "",
-    "image": null
+    "image": "ice_golems.jpg"
   },
   {
-    "id": "sorcerers",
-    "name": "Sorcerers",
+    "id": "ice_golems_2",
+    "name": "Ice Golems",
     "category": "UNIT",
     "elite": true,
     "text": "",
-    "image": null
+    "image": "ice_golems_2.jpg"
   },
   {
     "id": "catapults",
@@ -645,7 +565,23 @@
     "category": "UNIT",
     "elite": true,
     "text": "",
-    "image": null
+    "image": "catapults.jpg"
+  },
+  {
+    "id": "catapults_2",
+    "name": "Catapults",
+    "category": "UNIT",
+    "elite": true,
+    "text": "",
+    "image": "catapults_2.jpg"
+  },
+  {
+    "id": "catapults_3",
+    "name": "Catapults",
+    "category": "UNIT",
+    "elite": true,
+    "text": "",
+    "image": "catapults_3.jpg"
   },
   {
     "id": "amotep_gunners",
@@ -653,7 +589,15 @@
     "category": "UNIT",
     "elite": true,
     "text": "",
-    "image": null
+    "image": "amotep_gunners.jpg"
+  },
+  {
+    "id": "amotep_gunners_2",
+    "name": "Amotep Gunners",
+    "category": "UNIT",
+    "elite": true,
+    "text": "",
+    "image": "amotep_gunners_2.jpg"
   },
   {
     "id": "amotep_freezers",
@@ -661,15 +605,15 @@
     "category": "UNIT",
     "elite": true,
     "text": "",
-    "image": null
+    "image": "amotep_freezers.jpg"
   },
   {
-    "id": "heroes",
-    "name": "Heroes",
+    "id": "amotep_freezers_2",
+    "name": "Amotep Freezers",
     "category": "UNIT",
     "elite": true,
     "text": "",
-    "image": null
+    "image": "amotep_freezers_2.jpg"
   },
   {
     "id": "altem_mages",
@@ -677,7 +621,15 @@
     "category": "UNIT",
     "elite": true,
     "text": "",
-    "image": null
+    "image": "altem_mages.jpg"
+  },
+  {
+    "id": "altem_mages_2",
+    "name": "Altem Mages",
+    "category": "UNIT",
+    "elite": true,
+    "text": "",
+    "image": "altem_mages_2.jpg"
   },
   {
     "id": "altem_guardians",
@@ -685,50 +637,23 @@
     "category": "UNIT",
     "elite": true,
     "text": "",
-    "image": null
+    "image": "altem_guardians.jpg"
   },
   {
-    "id": "delphana_masters",
-    "name": "Delphana Masters",
+    "id": "altem_guardians_3",
+    "name": "Altem Guardians",
     "category": "UNIT",
     "elite": true,
     "text": "",
-    "image": null
+    "image": "altem_guardians_3.jpg"
   },
   {
-    "id": "placeholder_artifact_1",
-    "name": "Placeholder Artifact 1",
-    "category": "ARTIFACT",
-    "text": "Placeholder until the real base-game list is added",
-    "image": null
-  },
-  {
-    "id": "placeholder_artifact_2",
-    "name": "Placeholder Artifact 2",
-    "category": "ARTIFACT",
-    "text": "Placeholder until the real base-game list is added",
-    "image": null
-  },
-  {
-    "id": "placeholder_artifact_3",
-    "name": "Placeholder Artifact 3",
-    "category": "ARTIFACT",
-    "text": "Placeholder until the real base-game list is added",
-    "image": null
-  },
-  {
-    "id": "placeholder_artifact_4",
-    "name": "Placeholder Artifact 4",
-    "category": "ARTIFACT",
-    "text": "Placeholder until the real base-game list is added",
-    "image": null
-  },
-  {
-    "id": "placeholder_artifact_5",
-    "name": "Placeholder Artifact 5",
-    "category": "ARTIFACT",
-    "text": "Placeholder until the real base-game list is added",
-    "image": null
+    "id": "altem_guardians_2",
+    "name": "Altem Guardians",
+    "category": "UNIT",
+    "elite": true,
+    "text": "",
+    "image": "altem_guardians_2.jpg"
   },
   {
     "id": "tn1",
@@ -837,5 +762,709 @@
     "night": false,
     "text": "",
     "image": "the_right_moment.jpg"
+  },
+  {
+    "id": "goldyx_rage",
+    "name": "Rage",
+    "category": "BASIC_ACTION",
+    "hero": "Goldyx",
+    "color": "RED",
+    "text": "",
+    "image": "goldyx_rage.jpg"
+  },
+  {
+    "id": "goldyx_rage_2",
+    "name": "Rage",
+    "category": "BASIC_ACTION",
+    "hero": "Goldyx",
+    "color": "RED",
+    "text": "",
+    "image": "goldyx_rage_2.jpg"
+  },
+  {
+    "id": "goldyx_determination",
+    "name": "Determination",
+    "category": "BASIC_ACTION",
+    "hero": "Goldyx",
+    "color": "BLUE",
+    "text": "",
+    "image": "goldyx_determination.jpg"
+  },
+  {
+    "id": "goldyx_swiftness",
+    "name": "Swiftness",
+    "category": "BASIC_ACTION",
+    "hero": "Goldyx",
+    "color": "WHITE",
+    "text": "",
+    "image": "goldyx_swiftness.jpg"
+  },
+  {
+    "id": "goldyx_swiftness_2",
+    "name": "swiftness",
+    "category": "BASIC_ACTION",
+    "hero": "Goldyx",
+    "color": "WHITE",
+    "text": "",
+    "image": "goldyx_swiftness_2.jpg"
+  },
+  {
+    "id": "goldyx_march",
+    "name": "March",
+    "category": "BASIC_ACTION",
+    "hero": "Goldyx",
+    "color": "GREEN",
+    "text": "",
+    "image": "goldyx_march.jpg"
+  },
+  {
+    "id": "goldyx_march_2",
+    "name": "March",
+    "category": "BASIC_ACTION",
+    "hero": "Goldyx",
+    "color": "GREEN",
+    "text": "",
+    "image": "goldyx_march_2.jpg"
+  },
+  {
+    "id": "goldyx_stamina",
+    "name": "Stamina",
+    "category": "BASIC_ACTION",
+    "hero": "Goldyx",
+    "color": "BLUE",
+    "text": "",
+    "image": "goldyx_stamina.jpg"
+  },
+  {
+    "id": "goldyx_stamina_2",
+    "name": "Stamina",
+    "category": "BASIC_ACTION",
+    "hero": "Goldyx",
+    "color": "BLUE",
+    "text": "",
+    "image": "goldyx_stamina_2.jpg"
+  },
+  {
+    "id": "goldyx_tranqulity",
+    "name": "Tranqulity",
+    "category": "BASIC_ACTION",
+    "hero": "Goldyx",
+    "color": "GREEN",
+    "text": "",
+    "image": "goldyx_tranqulity.jpg"
+  },
+  {
+    "id": "goldyx_promise",
+    "name": "Promise",
+    "category": "BASIC_ACTION",
+    "hero": "Goldyx",
+    "color": "WHITE",
+    "text": "",
+    "image": "goldyx_promise.jpg"
+  },
+  {
+    "id": "goldyx_treaten",
+    "name": "Treaten",
+    "category": "BASIC_ACTION",
+    "hero": "Goldyx",
+    "color": "RED",
+    "text": "",
+    "image": "goldyx_treaten.jpg"
+  },
+  {
+    "id": "goldyx_crystalyze",
+    "name": "Crystallize",
+    "category": "BASIC_ACTION",
+    "hero": "Goldyx",
+    "color": "BLUE",
+    "text": "",
+    "image": "goldyx_crystalyze.jpg"
+  },
+  {
+    "id": "goldyx_mana_draw",
+    "name": "Mana Draw",
+    "category": "BASIC_ACTION",
+    "hero": "Goldyx",
+    "color": "WHITE",
+    "text": "",
+    "image": "goldyx_mana_draw.jpg"
+  },
+  {
+    "id": "goldyx_will_focus",
+    "name": "Will Focus",
+    "category": "BASIC_ACTION",
+    "hero": "Goldyx",
+    "color": "GREEN",
+    "text": "",
+    "image": "goldyx_will_focus.jpg"
+  },
+  {
+    "id": "goldyx_improvisation",
+    "name": "Improvisation",
+    "category": "BASIC_ACTION",
+    "hero": "Goldyx",
+    "color": "RED",
+    "text": "",
+    "image": "goldyx_improvisation.jpg"
+  },
+  {
+    "id": "norowas_rage",
+    "name": "Rage",
+    "category": "BASIC_ACTION",
+    "hero": "Norowas",
+    "color": "RED",
+    "text": "",
+    "image": "norowas_rage.jpg"
+  },
+  {
+    "id": "norowas_rage_2",
+    "name": "Rage",
+    "category": "BASIC_ACTION",
+    "hero": "Norowas",
+    "color": "RED",
+    "text": "",
+    "image": "norowas_rage_2.jpg"
+  },
+  {
+    "id": "norowas_determination",
+    "name": "Determination",
+    "category": "BASIC_ACTION",
+    "hero": "Norowas",
+    "color": "BLUE",
+    "text": "",
+    "image": "norowas_determination.jpg"
+  },
+  {
+    "id": "norowas_swiftness",
+    "name": "Swiftness",
+    "category": "BASIC_ACTION",
+    "hero": "Norowas",
+    "color": "WHITE",
+    "text": "",
+    "image": "norowas_swiftness.jpg"
+  },
+  {
+    "id": "norowas_swiftness_2",
+    "name": "Swiftness",
+    "category": "BASIC_ACTION",
+    "hero": "Norowas",
+    "color": "WHITE",
+    "text": "",
+    "image": "norowas_swiftness_2.jpg"
+  },
+  {
+    "id": "norowas_march",
+    "name": "March",
+    "category": "BASIC_ACTION",
+    "hero": "Norowas",
+    "color": "GREEN",
+    "text": "",
+    "image": "norowas_march.jpg"
+  },
+  {
+    "id": "norowas_march_2",
+    "name": "March",
+    "category": "BASIC_ACTION",
+    "hero": "Norowas",
+    "color": "GREEN",
+    "text": "",
+    "image": "norowas_march_2.jpg"
+  },
+  {
+    "id": "norowas_stamina",
+    "name": "Stamina",
+    "category": "BASIC_ACTION",
+    "hero": "Norowas",
+    "color": "BLUE",
+    "text": "",
+    "image": "norowas_stamina.jpg"
+  },
+  {
+    "id": "norowas_stamina_2",
+    "name": "Stamina",
+    "category": "BASIC_ACTION",
+    "hero": "Norowas",
+    "color": "BLUE",
+    "text": "",
+    "image": "norowas_stamina_2.jpg"
+  },
+  {
+    "id": "norowas_tranquility",
+    "name": "Tranquility",
+    "category": "BASIC_ACTION",
+    "hero": "Norowas",
+    "color": "GREEN",
+    "text": "",
+    "image": "norowas_tranquility.jpg"
+  },
+  {
+    "id": "norowas_noble_manners",
+    "name": "Noble Manners",
+    "category": "BASIC_ACTION",
+    "hero": "Norowas",
+    "color": "WHITE",
+    "text": "",
+    "image": "norowas_noble_manners.jpg"
+  },
+  {
+    "id": "norowas_threaten",
+    "name": "Threaten",
+    "category": "BASIC_ACTION",
+    "hero": "Norowas",
+    "color": "RED",
+    "text": "",
+    "image": "norowas_threaten.jpg"
+  },
+  {
+    "id": "norowas_crystallize",
+    "name": "Crystallize",
+    "category": "BASIC_ACTION",
+    "hero": "Norowas",
+    "color": "BLUE",
+    "text": "",
+    "image": "norowas_crystalize.jpg"
+  },
+  {
+    "id": "norowas_mana_draw",
+    "name": "Mana Draw",
+    "category": "BASIC_ACTION",
+    "hero": "Norowas",
+    "color": "WHITE",
+    "text": "",
+    "image": "norowas_mana_draw.jpg"
+  },
+  {
+    "id": "norowas_concentration",
+    "name": "Concentration",
+    "category": "BASIC_ACTION",
+    "hero": "Norowas",
+    "color": "GREEN",
+    "text": "",
+    "image": "norowas_concentration.jpg"
+  },
+  {
+    "id": "norowas_improvisation",
+    "name": "Improvisation",
+    "category": "BASIC_ACTION",
+    "hero": "Norowas",
+    "color": "RED",
+    "text": "",
+    "image": "norowas_improvisation.jpg"
+  },
+  {
+    "id": "arythea_battle_versatility",
+    "name": "Battle Versatility",
+    "category": "BASIC_ACTION",
+    "hero": "Arythea",
+    "color": "RED",
+    "text": "",
+    "image": "arythea_battle_versatility.jpg"
+  },
+  {
+    "id": "arythea_rage",
+    "name": "Rage",
+    "category": "BASIC_ACTION",
+    "hero": "Arythea",
+    "color": "RED",
+    "text": "",
+    "image": "arythea_rage.jpg"
+  },
+  {
+    "id": "arythea_determination",
+    "name": "Determination",
+    "category": "BASIC_ACTION",
+    "hero": "Arythea",
+    "color": "BLUE",
+    "text": "",
+    "image": "arythea_determination.jpg"
+  },
+  {
+    "id": "arythea_swiftness",
+    "name": "Swiftness",
+    "category": "BASIC_ACTION",
+    "hero": "Arythea",
+    "color": "WHITE",
+    "text": "",
+    "image": "arythea_swiftness.jpg"
+  },
+  {
+    "id": "arythea_swiftness_2",
+    "name": "Swiftness",
+    "category": "BASIC_ACTION",
+    "hero": "Arythea",
+    "color": "WHITE",
+    "text": "",
+    "image": "arythea_swiftness_2.jpg"
+  },
+  {
+    "id": "arythea_march",
+    "name": "March",
+    "category": "BASIC_ACTION",
+    "hero": "Arythea",
+    "color": "GREEN",
+    "text": "",
+    "image": "arythea_march.jpg"
+  },
+  {
+    "id": "arythea_march_2",
+    "name": "March",
+    "category": "BASIC_ACTION",
+    "hero": "Arythea",
+    "color": "GREEN",
+    "text": "",
+    "image": "arythea_march_2.jpg"
+  },
+  {
+    "id": "arythea_stamina",
+    "name": "Stamina",
+    "category": "BASIC_ACTION",
+    "hero": "Arythea",
+    "color": "BLUE",
+    "text": "",
+    "image": "arythea_stamina.jpg"
+  },
+  {
+    "id": "arythea_stamina_2",
+    "name": "Stamina",
+    "category": "BASIC_ACTION",
+    "hero": "Arythea",
+    "color": "BLUE",
+    "text": "",
+    "image": "arythea_stamina_2.jpg"
+  },
+  {
+    "id": "arythea_tranquility",
+    "name": "Tranquility",
+    "category": "BASIC_ACTION",
+    "hero": "Arythea",
+    "color": "GREEN",
+    "text": "",
+    "image": "arythea_tranquility.jpg"
+  },
+  {
+    "id": "arythea_promise",
+    "name": "Promise",
+    "category": "BASIC_ACTION",
+    "hero": "Arythea",
+    "color": "WHITE",
+    "text": "",
+    "image": "arythea_promise.jpg"
+  },
+  {
+    "id": "arythea_threaten",
+    "name": "Threaten",
+    "category": "BASIC_ACTION",
+    "hero": "Arythea",
+    "color": "RED",
+    "text": "",
+    "image": "arythea_threaten.jpg"
+  },
+  {
+    "id": "arythea_crystallize",
+    "name": "Crystallize",
+    "category": "BASIC_ACTION",
+    "hero": "Arythea",
+    "color": "BLUE",
+    "text": "",
+    "image": "arythea_crystallize.jpg"
+  },
+  {
+    "id": "arythea_mana_draw",
+    "name": "Mana Draw",
+    "category": "BASIC_ACTION",
+    "hero": "Arythea",
+    "color": "WHITE",
+    "text": "",
+    "image": "arythea_mana_draw.jpg"
+  },
+  {
+    "id": "arythea_concentration",
+    "name": "Concentration",
+    "category": "BASIC_ACTION",
+    "hero": "Arythea",
+    "color": "GREEN",
+    "text": "",
+    "image": "arythea_concentration.jpg"
+  },
+  {
+    "id": "arythea_improvisation",
+    "name": "Improvisation",
+    "category": "BASIC_ACTION",
+    "hero": "Arythea",
+    "color": "RED",
+    "text": "",
+    "image": "arythea_improvisation.jpg"
+  },
+  {
+    "id": "tovak_rage",
+    "name": "Rage",
+    "category": "BASIC_ACTION",
+    "hero": "Tovak",
+    "color": "RED",
+    "text": "",
+    "image": "tovak_rage.jpg"
+  },
+  {
+    "id": "tovak_rage_2",
+    "name": "Rage",
+    "category": "BASIC_ACTION",
+    "hero": "Tovak",
+    "color": "RED",
+    "text": "",
+    "image": "tovak_rage_2.jpg"
+  },
+  {
+    "id": "tovak_cold_toughness",
+    "name": "Cold Toughness",
+    "category": "BASIC_ACTION",
+    "hero": "Tovak",
+    "color": "BLUE",
+    "text": "",
+    "image": "tovak_cold_toughness.jpg"
+  },
+  {
+    "id": "tovak_swiftness",
+    "name": "Swiftness",
+    "category": "BASIC_ACTION",
+    "hero": "Tovak",
+    "color": "WHITE",
+    "text": "",
+    "image": "tovak_swiftness.jpg"
+  },
+  {
+    "id": "tovak_swiftness_2",
+    "name": "Swiftness",
+    "category": "BASIC_ACTION",
+    "hero": "Tovak",
+    "color": "WHITE",
+    "text": "",
+    "image": "tovak_swiftness_2.jpg"
+  },
+  {
+    "id": "tovak_march",
+    "name": "March",
+    "category": "BASIC_ACTION",
+    "hero": "Tovak",
+    "color": "GREEN",
+    "text": "",
+    "image": "tovak_march.jpg"
+  },
+  {
+    "id": "tovak_march_2",
+    "name": "March",
+    "category": "BASIC_ACTION",
+    "hero": "Tovak",
+    "color": "GREEN",
+    "text": "",
+    "image": "tovak_march_2.jpg"
+  },
+  {
+    "id": "tovak_stamina",
+    "name": "Stamina",
+    "category": "BASIC_ACTION",
+    "hero": "Tovak",
+    "color": "BLUE",
+    "text": "",
+    "image": "tovak_stamina.jpg"
+  },
+  {
+    "id": "tovak_stamina_2",
+    "name": "Stamina",
+    "category": "BASIC_ACTION",
+    "hero": "Tovak",
+    "color": "BLUE",
+    "text": "",
+    "image": "tovak_stamina_2.jpg"
+  },
+  {
+    "id": "tovak_tranquility",
+    "name": "Tranquility",
+    "category": "BASIC_ACTION",
+    "hero": "Tovak",
+    "color": "GREEN",
+    "text": "",
+    "image": "tovak_tranquility.jpg"
+  },
+  {
+    "id": "tovak_promise",
+    "name": "Promise",
+    "category": "BASIC_ACTION",
+    "hero": "Tovak",
+    "color": "WHITE",
+    "text": "",
+    "image": "tovak_promise.jpg"
+  },
+  {
+    "id": "tovak_threaten",
+    "name": "Threaten",
+    "category": "BASIC_ACTION",
+    "hero": "Tovak",
+    "color": "RED",
+    "text": "",
+    "image": "tovak_threaten.jpg"
+  },
+  {
+    "id": "tovak_crystallize",
+    "name": "Crystallize",
+    "category": "BASIC_ACTION",
+    "hero": "Tovak",
+    "color": "BLUE",
+    "text": "",
+    "image": "tovak_crystallize.jpg"
+  },
+  {
+    "id": "tovak_mana_draw",
+    "name": "Mana Draw",
+    "category": "BASIC_ACTION",
+    "hero": "Tovak",
+    "color": "WHITE",
+    "text": "",
+    "image": "tovak_mana_draw.jpg"
+  },
+  {
+    "id": "tovak_concentration",
+    "name": "Concentration",
+    "category": "BASIC_ACTION",
+    "hero": "Tovak",
+    "color": "GREEN",
+    "text": "",
+    "image": "tovak_concentration.jpg"
+  },
+  {
+    "id": "tovak_improvisation",
+    "name": "Improvisation",
+    "category": "BASIC_ACTION",
+    "hero": "Tovak",
+    "color": "RED",
+    "text": "",
+    "image": "tovak_improvisation.jpg"
+  },
+  {
+    "id": "swift_bolt",
+    "name": "Swift Bolt",
+    "category": "ADVANCED_ACTION",
+    "color": "WHITE",
+    "text": "",
+    "image": "swift_bolt.jpg"
+  },
+  {
+    "id": "crushing_bolt",
+    "name": "Crushing Bolt",
+    "category": "ADVANCED_ACTION",
+    "color": "GREEN",
+    "text": "",
+    "image": "crushing_bolt.jpg"
+  },
+  {
+    "id": "banner_of_glory",
+    "name": "Banner Of Glory",
+    "category": "ARTIFACT",
+    "text": "",
+    "image": "banner_of_glory.jpg"
+  },
+  {
+    "id": "banner_of_fear",
+    "name": "Banner of Fear",
+    "category": "ARTIFACT",
+    "text": "",
+    "image": "banner_of_fear.jpg"
+  },
+  {
+    "id": "banner_of_protection",
+    "name": "Banner of Protection",
+    "category": "ARTIFACT",
+    "text": "",
+    "image": "banner_of_protection.jpg"
+  },
+  {
+    "id": "banner_of_courage",
+    "name": "Banner of Courage",
+    "category": "ARTIFACT",
+    "text": "",
+    "image": "banner_of_courage.jpg"
+  },
+  {
+    "id": "ruby_ring",
+    "name": "Ruby Ring",
+    "category": "ARTIFACT",
+    "text": "",
+    "image": "ruby_ring.jpg"
+  },
+  {
+    "id": "saphire_ring",
+    "name": "Saphire Ring",
+    "category": "ARTIFACT",
+    "text": "",
+    "image": "saphire_ring.jpg"
+  },
+  {
+    "id": "diamond_ring",
+    "name": "Diamond Ring",
+    "category": "ARTIFACT",
+    "text": "",
+    "image": "diamond_ring.jpg"
+  },
+  {
+    "id": "emerald_ring",
+    "name": "Emerald Ring",
+    "category": "ARTIFACT",
+    "text": "",
+    "image": "emerald_ring.jpg"
+  },
+  {
+    "id": "sword_of_justice",
+    "name": "Sword of Justice",
+    "category": "ARTIFACT",
+    "text": "",
+    "image": "sword_of_justice.jpg"
+  },
+  {
+    "id": "horn_of_wrath",
+    "name": "Horn of Wrath",
+    "category": "ARTIFACT",
+    "text": "",
+    "image": "horn_of_wrath.jpg"
+  },
+  {
+    "id": "endless_bag_of_gold",
+    "name": "Endless Bag of Gold",
+    "category": "ARTIFACT",
+    "text": "",
+    "image": "endless_bag_of_gold.jpg"
+  },
+  {
+    "id": "endless_gem_pouch",
+    "name": "Endless Gem Pouch",
+    "category": "ARTIFACT",
+    "text": "",
+    "image": "endless_gem_pouch.jpg"
+  },
+  {
+    "id": "golden_grail",
+    "name": "Golden Grail",
+    "category": "ARTIFACT",
+    "text": "",
+    "image": "golden_grail.jpg"
+  },
+  {
+    "id": "book_of_wisdom",
+    "name": "Book of Wisdom",
+    "category": "ARTIFACT",
+    "text": "",
+    "image": "book_of_wisdom.jpg"
+  },
+  {
+    "id": "amulet_of_sun",
+    "name": "Amulet of sun",
+    "category": "ARTIFACT",
+    "text": "",
+    "image": "amulet_of_sun.jpg"
+  },
+  {
+    "id": "amulet_of_darkness",
+    "name": "Amulet of darkness",
+    "category": "ARTIFACT",
+    "text": "",
+    "image": "amulet_of_darkness.jpg"
   }
 ]

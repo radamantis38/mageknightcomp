@@ -234,7 +234,7 @@ class SoloGame private constructor(
         }
     }
 
-    private fun Card.toDummyCard() = DummyCard(name, color!!)
+    private fun Card.toDummyCard() = DummyCard(name, color!!, image)
 
     // --- Saving -------------------------------------------------------------------------------
 
@@ -312,6 +312,9 @@ class SoloGame private constructor(
 
         fun fromJson(json: JSONObject, catalog: List<Card>): SoloGame {
             fun ids(key: String) = json.getJSONArray(key).let { a -> MutableList(a.length()) { a.getString(it) } }
+            val known = catalog.mapTo(HashSet()) { it.id }
+            // A card that has since been removed from the catalog makes the save unusable
+            fun cards(key: String) = ids(key).onEach { require(it in known) { "Card $it is no longer in the catalog" } }
             // Older saves stored Tactics as names like "PLANNING"; the id is the same in lowercase
             fun tactic(key: String) = json.optString(key).ifBlank { null }?.lowercase()
             val crystals = json.getJSONObject("dummyCrystals")
@@ -320,15 +323,15 @@ class SoloGame private constructor(
                 playerHero = json.getString("playerHero"),
                 dummyHero = json.getString("dummyHero"),
                 round = json.getInt("round"),
-                aaDeck = ids("aaDeck"),
-                aaOffer = ids("aaOffer"),
-                spellDeck = ids("spellDeck"),
-                spellOffer = ids("spellOffer"),
-                regularUnitDeck = ids("regularUnitDeck"),
-                eliteUnitDeck = ids("eliteUnitDeck"),
-                unitOffer = ids("unitOffer"),
+                aaDeck = cards("aaDeck"),
+                aaOffer = cards("aaOffer"),
+                spellDeck = cards("spellDeck"),
+                spellOffer = cards("spellOffer"),
+                regularUnitDeck = cards("regularUnitDeck"),
+                eliteUnitDeck = cards("eliteUnitDeck"),
+                unitOffer = cards("unitOffer"),
                 // Saves from before Artifacts were tracked get a freshly shuffled deck
-                artifactDeck = if (json.has("artifactDeck")) ids("artifactDeck")
+                artifactDeck = if (json.has("artifactDeck")) cards("artifactDeck")
                 else shuffledDeck(catalog, Random) { it.category == CardCategory.ARTIFACT },
                 monasteries = json.getInt("monasteries"),
                 coreTileRevealed = json.getBoolean("coreTileRevealed"),
@@ -360,7 +363,7 @@ class SoloGame private constructor(
          */
         fun startingDeck(catalog: List<Card>, hero: String): List<DummyCard> =
             catalog.filter { it.category == CardCategory.BASIC_ACTION && it.hero == hero }
-                .map { DummyCard(it.name, it.color!!) }
+                .map { DummyCard(it.name, it.color!!, it.image) }
                 .takeIf { it.size == BASIC_ACTIONS.size } ?: BASIC_ACTIONS
 
         private fun shuffledDeck(catalog: List<Card>, random: Random, filter: (Card) -> Boolean) =
@@ -370,11 +373,14 @@ class SoloGame private constructor(
             MutableList(minOf(count, size)) { removeAt(0) }
 
         private fun List<DummyCard>.toJson() =
-            JSONArray(map { JSONObject().put("name", it.name).put("color", it.color.name) })
+            JSONArray(map {
+                JSONObject().put("name", it.name).put("color", it.color.name).put("image", it.image ?: JSONObject.NULL)
+            })
 
         private fun JSONArray.toDummyCards() = MutableList(length()) {
             val item = getJSONObject(it)
-            DummyCard(item.getString("name"), ManaColor.valueOf(item.getString("color")))
+            val image = if (item.isNull("image")) null else item.getString("image")
+            DummyCard(item.getString("name"), ManaColor.valueOf(item.getString("color")), image)
         }
     }
 }

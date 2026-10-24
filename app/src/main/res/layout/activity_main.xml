@@ -9,6 +9,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/crimson"
         android:theme="@style/Theme.MageKnightCompa.AppBarOverlay">
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -22,7 +23,7 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
+            android:background="@color/crimson"
             app:tabIndicatorColor="@color/white"
             app:tabMode="fixed"
             app:tabSelectedTextColor="@color/white"

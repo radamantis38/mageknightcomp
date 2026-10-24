@@ -7,7 +7,7 @@ import com.hermit.mageknightcompa.data.CardCategory
 import com.hermit.mageknightcompa.data.ManaColor
 
 /** A card in the Dummy player's Deed deck. Only its color matters when it is flipped. */
-data class DummyCard(val name: String, val color: ManaColor)
+data class DummyCard(val name: String, val color: ManaColor, val image: String? = null)
 
 /**
  * Fallback starting deck for a Dummy Hero whose 16 Basic Actions are not all in the catalog yet.

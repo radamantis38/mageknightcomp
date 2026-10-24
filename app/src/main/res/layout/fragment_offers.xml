@@ -12,9 +12,10 @@
 
         <TextView
             android:id="@+id/aaHeader"
-            style="@style/OfferHeader"
+            style="@style/SectionHeader"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/aaList"
@@ -25,7 +26,7 @@
 
         <TextView
             android:id="@+id/spellHeader"
-            style="@style/OfferHeader"
+            style="@style/SectionHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -38,7 +39,7 @@
 
         <TextView
             android:id="@+id/unitHeader"
-            style="@style/OfferHeader"
+            style="@style/SectionHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -51,7 +52,7 @@
 
         <TextView
             android:id="@+id/artifactHeader"
-            style="@style/OfferHeader"
+            style="@style/SectionHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -102,7 +103,7 @@
             android:text="@string/core_tile_revealed" />
 
         <TextView
-            style="@style/OfferHeader"
+            style="@style/SectionHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/conquered_cities" />
