@@ -6,6 +6,12 @@ your own Hero.
 
 Supports the four base-game Heroes: Arythea, Goldyx, Norowas and Tovak.
 
+## Download
+
+**[Download the APK](https://github.com/radamantis38/mageknightcomp/raw/main/MageKnightCompanion-public.apk)**
+(Android 6.0 or later). It comes without card pictures; see [Card pictures](#card-pictures).
+To install it, allow installing apps from unknown sources on your device.
+
 ## Features
 
 **Offers**
