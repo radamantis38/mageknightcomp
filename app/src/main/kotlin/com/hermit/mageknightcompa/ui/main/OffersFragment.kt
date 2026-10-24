@@ -8,7 +8,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -145,13 +145,15 @@ class OffersFragment : Fragment() {
             return
         }
         lateinit var dialog: AlertDialog
-        val list = cardList(drawn) { i ->
-            dialog.dismiss()
-            showKeptArtifacts(viewModel.update { gainArtifacts(count, drawn[i].id) }.orEmpty())
+        val grid = cardGrid(drawn) { i ->
+            showCardPreview(drawn[i], getString(R.string.artifact_return_message), R.string.return_to_bottom) {
+                dialog.dismiss()
+                showKeptArtifacts(viewModel.update { gainArtifacts(count, drawn[i].id) }.orEmpty())
+            }
         }
         dialog = MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.choose_artifact_to_return)
-            .setView(list)
+            .setView(grid)
             .setNegativeButton(R.string.cancel, null)
             .show()
     }
@@ -159,19 +161,23 @@ class OffersFragment : Fragment() {
     private fun showKeptArtifacts(kept: List<Card>) {
         MaterialAlertDialogBuilder(requireContext())
             .apply {
-                if (kept.isEmpty()) setMessage(R.string.artifact_deck_empty)
-                else setTitle(R.string.artifacts_kept_title).setView(cardList(kept) {})
+                if (kept.isEmpty()) {
+                    setMessage(R.string.artifact_deck_empty)
+                } else {
+                    setTitle(R.string.artifacts_kept_title)
+                    setView(cardGrid(kept) { i -> showCardPreview(kept[i], getString(R.string.artifacts_kept_title)) })
+                }
             }
             .setPositiveButton(R.string.ok, null)
             .show()
     }
 
-    /** The [cards] with their pictures, for a dialog. */
-    private fun cardList(cards: List<Card>, onClick: (Int) -> Unit) = RecyclerView(requireContext()).apply {
+    /** Small pictures of the [cards], three to a row, for a dialog. */
+    private fun cardGrid(cards: List<Card>, onClick: (Int) -> Unit) = RecyclerView(requireContext()).apply {
         val padding = resources.getDimensionPixelSize(R.dimen.activity_horizontal_margin)
         setPadding(padding, padding / 2, padding, 0)
-        layoutManager = LinearLayoutManager(context)
-        adapter = CardRowAdapter(onClick).apply { rows = cards.map { CardRow(it, "") } }
+        layoutManager = GridLayoutManager(context, ARTIFACTS_PER_ROW)
+        adapter = CardGridAdapter(onClick).apply { rows = cards.map { CardRow(it, "") } }
     }
 
     /** Shows the card full screen, with what taking it does and a button to take it. */
@@ -186,5 +192,6 @@ class OffersFragment : Fragment() {
 
     companion object {
         private const val MAX_ARTIFACTS_AT_ONCE = 3
+        private const val ARTIFACTS_PER_ROW = 3
     }
 }

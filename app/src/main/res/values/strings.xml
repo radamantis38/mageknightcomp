@@ -44,6 +44,8 @@
     <string name="how_many_artifacts">How many Artifacts did you gain?</string>
     <string name="choose_artifact_to_return">Choose one to put at the bottom of the deck</string>
     <string name="artifacts_kept_title">You keep</string>
+    <string name="artifact_return_message">This one goes to the bottom of the Artifact deck; you keep the others.</string>
+    <string name="return_to_bottom">Return to bottom</string>
     <string name="artifact_deck_empty">The Artifact deck is empty</string>
     <string name="ok">OK</string>
     <string name="conquered_cities">Conquered cities</string>

@@ -7,8 +7,12 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.hermit.mageknightcompa.data.Card
 import com.hermit.mageknightcompa.data.ManaColor
 import com.hermit.mageknightcompa.databinding.CardGridItemBinding
+
+/** A card shown in an offer, with a short [detail] line (color, position in the offer...). */
+data class CardRow(val card: Card, val detail: String)
 
 /** Small [CardRow]s for a grid; tapping one calls [onClick] with its position. */
 class CardGridAdapter(private val onClick: (Int) -> Unit) :
@@ -35,6 +39,7 @@ class CardGridAdapter(private val onClick: (Int) -> Unit) :
         val (card, detail) = rows[position]
         with(viewHolder.binding) {
             detailView.text = detail
+            detailView.visibility = if (detail.isEmpty()) View.GONE else View.VISIBLE
             imageView.contentDescription = card.name
             if (card.image != null) {
                 imageView.visibility = View.VISIBLE
