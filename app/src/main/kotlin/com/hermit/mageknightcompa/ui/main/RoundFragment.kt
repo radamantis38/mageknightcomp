@@ -22,6 +22,10 @@ class RoundFragment : Fragment() {
         val viewModel = ViewModelProvider(requireActivity())[GameViewModel::class.java]
 
         binding.nextRound.setOnClickListener {
+            if (viewModel.game.value?.canStartNextRound == false) {
+                Snackbar.make(it, R.string.choose_tactic_first, Snackbar.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
             MaterialAlertDialogBuilder(requireContext())
                 .setTitle(R.string.next_round)
                 .setMessage(R.string.next_round_confirm)

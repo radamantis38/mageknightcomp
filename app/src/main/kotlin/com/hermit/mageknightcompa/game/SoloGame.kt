@@ -179,8 +179,12 @@ class SoloGame private constructor(
 
     // --- Round preparation --------------------------------------------------------------------
 
+    /** A new Round needs this Round's Tactic first, unless there were none left to choose. */
+    val canStartNextRound get() = playerTactic != null || availableTactics().isEmpty()
+
     /** Prepares the next Round: Unit offer, Advanced Action and Spell offers, Tactics and Dummy deck. */
     fun startNextRound(random: Random = Random) {
+        check(canStartNextRound) { "Choose a Tactic before starting the next Round" }
         listOfNotNull(playerTactic, dummyTactic).forEach(removedTactics::add)
         playerTactic = null
         dummyTactic = null

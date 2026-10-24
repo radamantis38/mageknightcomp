@@ -12,6 +12,7 @@ import com.hermit.mageknightcompa.game.SoloGame
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotEquals
+import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import java.io.File
@@ -22,6 +23,12 @@ class SoloGameTest {
     private val catalog = CardRepository.parse(File("src/main/assets/cards.json").readText())
 
     private fun newGame() = SoloGame.start(catalog, "Tovak", "Goldyx", Random(42))
+
+    /** Picks a Tactic if this Round still needs one, then starts the next Round. */
+    private fun SoloGame.nextRound(random: Random) {
+        if (!canStartNextRound) chooseTactic(availableTactics().first(), random)
+        startNextRound(random)
+    }
 
     @Test
     fun setupDealsThreeCardsToEachOffer() {
@@ -77,7 +84,7 @@ class SoloGameTest {
         val game = newGame()
         game.takeFromUnitOffer(0)
         assertEquals(2, game.unitOffer.size)
-        game.startNextRound(Random(1))
+        game.nextRound(Random(1))
         assertEquals(3, game.unitOffer.size)
     }
 
@@ -128,7 +135,7 @@ class SoloGameTest {
         val crystalsBefore = game.dummyCrystals[lowestSpell.color] ?: 0
         game.playDummyTurn()
 
-        game.startNextRound(Random(1))
+        game.nextRound(Random(1))
 
         assertEquals(17, game.dummyDeck.size)
         assertTrue(game.dummyDiscard.isEmpty())
@@ -145,7 +152,7 @@ class SoloGameTest {
     fun coreTileAlternatesEliteAndRegularUnits() {
         val game = newGame()
         game.coreTileRevealed = true
-        game.startNextRound(Random(1))
+        game.nextRound(Random(1))
         assertEquals(listOf(true, false, true), game.unitOffer.map { game.card(it).elite })
     }
 
@@ -153,13 +160,13 @@ class SoloGameTest {
     fun monasteriesAddAdvancedActionsToUnitOffer() {
         val game = newGame()
         game.monasteries = 2
-        game.startNextRound(Random(1))
+        game.nextRound(Random(1))
         assertEquals(5, game.unitOffer.size)
         assertEquals(2, game.unitOffer.count { game.card(it).category == CardCategory.ADVANCED_ACTION })
         // Next round they go back to the bottom of the AA deck
         val monasteryCards = game.unitOffer.filter { game.card(it).category == CardCategory.ADVANCED_ACTION }
         game.monasteries = 0
-        game.startNextRound(Random(2))
+        game.nextRound(Random(2))
         assertTrue(monasteryCards.all { it in game.aaDeck })
     }
 
@@ -194,6 +201,16 @@ class SoloGameTest {
     fun ignoresCitiesThatAreNoLongerTracked() {
         val json = newGame().toJson().put("conqueredCities", org.json.JSONArray(listOf("RED", "GREEN")))
         assertEquals(setOf(City.GREEN), SoloGame.fromJson(json, catalog).conqueredCities)
+    }
+
+    @Test
+    fun aNewRoundNeedsATacticFirst() {
+        val game = newGame()
+        assertFalse(game.canStartNextRound)
+        assertThrows(IllegalStateException::class.java) { game.startNextRound(Random(1)) }
+        assertEquals(1, game.round)
+        game.chooseTactic(game.availableTactics().first(), Random(1))
+        assertTrue(game.canStartNextRound)
     }
 
     @Test(expected = IllegalArgumentException::class)
@@ -242,9 +259,9 @@ class SoloGameTest {
         repeat(3) {
             game.chooseTactic(game.availableTactics().first(), Random(it))
             assertNotEquals(game.playerTactic, game.dummyTactic)
-            game.startNextRound(Random(it)) // Night
+            game.nextRound(Random(it)) // Night
             game.chooseTactic(game.availableTactics().first(), Random(it))
-            game.startNextRound(Random(it)) // Day
+            game.nextRound(Random(it)) // Day
         }
         // 6 Day and 6 Night Tactics, each used once, whether they come from the catalog or not
         assertEquals(12, game.removedTactics.size)
@@ -284,7 +301,7 @@ class SoloGameTest {
         val aaTotal = catalog.count { it.category == CardCategory.ADVANCED_ACTION }
         game.monasteries = 1
         game.coreTileRevealed = true
-        repeat(4) { game.startNextRound(Random(it)) }
+        repeat(4) { game.nextRound(Random(it)) }
         val aaInDummy = game.dummyDeck.size - 16
         assertEquals(4, aaInDummy)
         val aaOnTable = (game.aaDeck + game.aaOffer + game.unitOffer).count {
