@@ -87,4 +87,19 @@
     <string name="your_hero">Your Hero (random)</string>
     <string name="dummy_hero_label">Dummy Hero (random)</string>
     <string name="no_game">No game in progress</string>
+
+    <string name="draft_at_start">Drafting at the Start</string>
+    <string name="draft_at_start_hint">You are dealt 4 Advanced Actions and set aside 3. At the end of each Day you shuffle one of them into your deck.</string>
+    <string name="drafting_in_round_tab">drafting in the Round tab</string>
+    <string name="draft_prompt">Choose the card that goes back into the Advanced Action deck; you set aside the other three. Then the offer is revealed.</string>
+    <string name="drafted_cards">Drafted Advanced Actions</string>
+    <string name="drafted_prompt">At the end of each Day, shuffle one of them into your deck.</string>
+    <string name="set_aside_label">set aside</string>
+    <string name="draft_return_message">This one is shuffled back into the Advanced Action deck. Keep the other three apart from your deck until you shuffle them in, one at the end of each Day.</string>
+    <string name="shuffle_back">Shuffle back</string>
+    <string name="finish_draft_first">Finish the draft before starting the next Round</string>
+    <string name="shuffle_in_title">End of the Day</string>
+    <string name="shuffle_in_prompt">Choose a drafted card to shuffle into your deck. Then the next Round is prepared.</string>
+    <string name="shuffle_in_message">Shuffle it into your deck with the rest of your cards.</string>
+    <string name="shuffle_in">Shuffle in</string>
 </resources>

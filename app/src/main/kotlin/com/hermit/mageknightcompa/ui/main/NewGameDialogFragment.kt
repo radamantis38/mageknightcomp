@@ -49,7 +49,8 @@ class NewGameDialogFragment : DialogFragment() {
                 val playerHero = HEROES[binding.playerHero.selectedItemPosition]
                 var dummyHero = HEROES[binding.dummyHero.selectedItemPosition]
                 if (dummyHero == playerHero) dummyHero = (HEROES - playerHero).random()
-                ViewModelProvider(requireActivity())[GameViewModel::class.java].newGame(playerHero, dummyHero)
+                ViewModelProvider(requireActivity())[GameViewModel::class.java]
+                    .newGame(playerHero, dummyHero, binding.draft.isChecked)
             }
             .apply { if (isCancelable) setNegativeButton(R.string.cancel, null) }
             .create()

@@ -26,4 +26,17 @@
         android:id="@+id/dummyHero"
         android:layout_width="match_parent"
         android:layout_height="48dp" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/draft"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/draft_at_start" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/draft_at_start_hint"
+        android:textAppearance="?attr/textAppearanceCaption" />
 </LinearLayout>

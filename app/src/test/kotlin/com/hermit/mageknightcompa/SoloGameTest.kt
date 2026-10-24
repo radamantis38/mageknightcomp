@@ -27,7 +27,57 @@ class SoloGameTest {
     /** Picks a Tactic if this Round still needs one, then starts the next Round. */
     private fun SoloGame.nextRound(random: Random) {
         if (!canStartNextRound) chooseTactic(availableTactics().first(), random)
-        startNextRound(random)
+        startNextRound(random, draftedCards.firstOrNull()?.takeIf { mustShuffleInDraftedCard })
+    }
+
+    @Test
+    fun draftDealsFourAdvancedActionsBeforeTheOfferIsRevealed() {
+        val game = SoloGame.start(catalog, "Tovak", "Goldyx", Random(42), draft = true)
+        assertEquals(4, game.draftHand.size)
+        assertTrue(game.aaOffer.isEmpty())
+        assertTrue(game.drafting)
+        assertFalse(game.canStartNextRound)
+        assertEquals(3, game.spellOffer.size)
+    }
+
+    @Test
+    fun returningOneDraftCardSetsAsideTheOthersAndRevealsTheOffer() {
+        val game = SoloGame.start(catalog, "Tovak", "Goldyx", Random(42), draft = true)
+        val total = game.aaDeck.size + game.draftHand.size
+        val hand = game.draftHand.toList()
+        game.returnDraftCard(hand[1], Random(1))
+        assertEquals(hand - hand[1], game.draftedCards)
+        assertTrue(game.draftHand.isEmpty())
+        assertFalse(game.drafting)
+        assertEquals(3, game.aaOffer.size)
+        assertEquals(total - 3, game.aaDeck.size + game.aaOffer.size)
+        assertTrue(hand[1] in game.aaDeck + game.aaOffer)
+        assertThrows(IllegalArgumentException::class.java) { game.returnDraftCard(hand[1]) }
+    }
+
+    @Test
+    fun aDraftedCardIsShuffledInAtTheEndOfEachDay() {
+        val random = Random(42)
+        val game = SoloGame.start(catalog, "Tovak", "Goldyx", random, draft = true)
+        game.returnDraftCard(game.draftHand.first(), random)
+        val drafted = game.draftedCards.toList()
+        game.chooseTactic(game.availableTactics().first(), random)
+        assertTrue(game.mustShuffleInDraftedCard)
+        assertThrows(IllegalArgumentException::class.java) { game.startNextRound(random) }
+        game.startNextRound(random, drafted[1])
+        assertEquals(listOf(drafted[0], drafted[2]), game.draftedCards)
+        // No card at the end of a Night
+        assertFalse(game.mustShuffleInDraftedCard)
+        game.nextRound(random)
+        assertEquals(2, game.draftedCards.size)
+    }
+
+    @Test
+    fun draftSurvivesSaving() {
+        val game = SoloGame.start(catalog, "Tovak", "Goldyx", Random(42), draft = true)
+        val restored = SoloGame.fromJson(game.toJson(), catalog)
+        assertEquals(game.draftHand, restored.draftHand)
+        assertEquals(game.draftedCards, restored.draftedCards)
     }
 
     @Test

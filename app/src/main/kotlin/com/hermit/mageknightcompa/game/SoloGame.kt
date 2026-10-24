@@ -37,7 +37,11 @@ class SoloGame private constructor(
     /** Ids of the Tactics already used, which are out of the game. */
     val removedTactics: MutableSet<String>,
     playerTactic: String?,
-    dummyTactic: String?
+    dummyTactic: String?,
+    /** Drafting at the Start: Advanced Actions dealt to you that you have not set aside yet. */
+    val draftHand: MutableList<String>,
+    /** Drafted Advanced Actions set aside; one is shuffled into your deck at the end of each Day. */
+    val draftedCards: MutableList<String>
 ) {
     var round = round
         private set
@@ -123,6 +127,27 @@ class SoloGame private constructor(
         return card(taken)
     }
 
+    // --- Drafting at the Start --------------------------------------------------------------
+
+    /** True until you have set aside your drafted cards; the Advanced Action offer waits for it. */
+    val drafting get() = draftHand.isNotEmpty()
+
+    /**
+     * Ends the draft: [returned] is shuffled back into the Advanced Action deck, you set aside the
+     * rest of [draftHand], and the Advanced Action offer is revealed.
+     */
+    fun returnDraftCard(returned: String, random: Random = Random) {
+        require(draftHand.remove(returned)) { "Card $returned is not in the draft" }
+        draftedCards += draftHand
+        draftHand.clear()
+        aaDeck += returned
+        aaDeck.shuffle(random)
+        aaOffer += aaDeck.takeFrom(CARDS_IN_OFFER)
+    }
+
+    /** At the end of each Day you shuffle one of your drafted cards into your deck. */
+    val mustShuffleInDraftedCard get() = !isNight && draftedCards.isNotEmpty()
+
     // --- Tactics ------------------------------------------------------------------------------
 
     /** The Tactic card with the given id. */
@@ -179,12 +204,23 @@ class SoloGame private constructor(
 
     // --- Round preparation --------------------------------------------------------------------
 
-    /** A new Round needs this Round's Tactic first, unless there were none left to choose. */
-    val canStartNextRound get() = playerTactic != null || availableTactics().isEmpty()
+    /**
+     * A new Round needs the draft to be over and this Round's Tactic, unless there were none
+     * left to choose.
+     */
+    val canStartNextRound get() = !drafting && (playerTactic != null || availableTactics().isEmpty())
 
-    /** Prepares the next Round: Unit offer, Advanced Action and Spell offers, Tactics and Dummy deck. */
-    fun startNextRound(random: Random = Random) {
-        check(canStartNextRound) { "Choose a Tactic before starting the next Round" }
+    /**
+     * Prepares the next Round: Unit offer, Advanced Action and Spell offers, Tactics and Dummy deck.
+     * At the end of a Day, [shuffledIn] is the drafted card you shuffle into your deck.
+     */
+    fun startNextRound(random: Random = Random, shuffledIn: String? = null) {
+        check(canStartNextRound) { "Finish the draft and choose a Tactic before starting the next Round" }
+        if (mustShuffleInDraftedCard) {
+            require(draftedCards.remove(shuffledIn)) { "Choose a drafted card to shuffle into your deck" }
+        } else {
+            require(shuffledIn == null)
+        }
         listOfNotNull(playerTactic, dummyTactic).forEach(removedTactics::add)
         playerTactic = null
         dummyTactic = null
@@ -270,30 +306,39 @@ class SoloGame private constructor(
         .put("removedTactics", JSONArray(removedTactics))
         .put("playerTactic", playerTactic)
         .put("dummyTactic", dummyTactic)
+        .put("draftHand", JSONArray(draftHand))
+        .put("draftedCards", JSONArray(draftedCards))
 
     companion object {
         /** In a solo game the Unit offer has the number of players plus 2 cards. */
         const val UNITS_IN_OFFER = 3
         private const val CARDS_IN_OFFER = 3
+        /** Drafting at the Start, in solo: four Advanced Actions are dealt and you set aside three. */
+        const val DRAFT_DEALT = 4
 
-        /** Sets up a new solo game. The Dummy starts with the crystals shown on its Hero card. */
+        /**
+         * Sets up a new solo game. The Dummy starts with the crystals shown on its Hero card. With
+         * [draft], your draft cards are dealt before the Advanced Action offer is revealed.
+         */
         fun start(
             catalog: List<Card>,
             playerHero: String,
             dummyHero: String,
-            random: Random = Random
+            random: Random = Random,
+            draft: Boolean = false
         ): SoloGame {
             fun deck(filter: (Card) -> Boolean) = shuffledDeck(catalog, random, filter)
 
             val aaDeck = deck { it.category == CardCategory.ADVANCED_ACTION }
             val spellDeck = deck { it.category == CardCategory.SPELL }
+            val draftHand = if (draft) aaDeck.takeFrom(DRAFT_DEALT) else mutableListOf()
             return SoloGame(
                 catalog = catalog.associateBy { it.id },
                 playerHero = playerHero,
                 dummyHero = dummyHero,
                 round = 1,
                 aaDeck = aaDeck,
-                aaOffer = aaDeck.takeFrom(CARDS_IN_OFFER),
+                aaOffer = if (draft) mutableListOf() else aaDeck.takeFrom(CARDS_IN_OFFER),
                 spellDeck = spellDeck,
                 spellOffer = spellDeck.takeFrom(CARDS_IN_OFFER),
                 regularUnitDeck = deck { it.category == CardCategory.UNIT && !it.elite },
@@ -310,7 +355,9 @@ class SoloGame private constructor(
                 lastDummyTurn = null,
                 removedTactics = mutableSetOf(),
                 playerTactic = null,
-                dummyTactic = null
+                dummyTactic = null,
+                draftHand = draftHand,
+                draftedCards = mutableListOf()
             ).apply { dealUnits() }
         }
 
@@ -319,6 +366,8 @@ class SoloGame private constructor(
             val known = catalog.mapTo(HashSet()) { it.id }
             // A card that has since been removed from the catalog makes the save unusable
             fun cards(key: String) = ids(key).onEach { require(it in known) { "Card $it is no longer in the catalog" } }
+            // Saves from before drafting was added have no draft
+            fun optCards(key: String) = if (json.has(key)) cards(key) else mutableListOf()
             // Older saves stored Tactics as names like "PLANNING"; the id is the same in lowercase
             fun tactic(key: String) = json.optString(key).ifBlank { null }?.lowercase()
             val crystals = json.getJSONObject("dummyCrystals")
@@ -357,7 +406,9 @@ class SoloGame private constructor(
                 },
                 removedTactics = ids("removedTactics").map { it.lowercase() }.toMutableSet(),
                 playerTactic = tactic("playerTactic"),
-                dummyTactic = tactic("dummyTactic")
+                dummyTactic = tactic("dummyTactic"),
+                draftHand = optCards("draftHand"),
+                draftedCards = optCards("draftedCards")
             )
         }
 

@@ -6,7 +6,10 @@ import android.view.View
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.hermit.mageknightcompa.R
 import com.hermit.mageknightcompa.data.Card
 import com.hermit.mageknightcompa.databinding.DialogCardPreviewBinding
 
@@ -46,4 +49,12 @@ fun Fragment.showCardPreview(
     }
     dialog.setContentView(binding.root)
     dialog.show()
+}
+
+/** Small pictures of the [cards], three to a row, for a dialog. */
+fun Fragment.cardGrid(cards: List<Card>, onClick: (Int) -> Unit) = RecyclerView(requireContext()).apply {
+    val padding = resources.getDimensionPixelSize(R.dimen.activity_horizontal_margin)
+    setPadding(padding, padding / 2, padding, 0)
+    layoutManager = GridLayoutManager(context, 3)
+    adapter = CardGridAdapter(onClick).apply { rows = cards.map { CardRow(it, "") } }
 }

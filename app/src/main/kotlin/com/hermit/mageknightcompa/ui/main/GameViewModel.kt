@@ -24,9 +24,9 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     val canUndo get() = history.isNotEmpty()
 
-    fun newGame(playerHero: String, dummyHero: String) {
+    fun newGame(playerHero: String, dummyHero: String, draft: Boolean) {
         history.clear()
-        publish(SoloGame.start(catalog, playerHero, dummyHero))
+        publish(SoloGame.start(catalog, playerHero, dummyHero, draft = draft))
     }
 
     /** Runs [action] on the current game, keeping the previous state for [undo]. */

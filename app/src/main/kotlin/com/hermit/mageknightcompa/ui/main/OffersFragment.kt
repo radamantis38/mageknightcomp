@@ -8,8 +8,6 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.switchmaterial.SwitchMaterial
@@ -88,6 +86,7 @@ class OffersFragment : Fragment() {
             binding.root.visibility = if (game == null) View.INVISIBLE else View.VISIBLE
             if (game == null) return@observe
             binding.aaHeader.text = header(R.string.offer_advanced_actions, game.aaDeck.size)
+                .let { if (game.drafting) "$it · ${getString(R.string.drafting_in_round_tab)}" else it }
             binding.spellHeader.text = header(R.string.offer_spells, game.spellDeck.size)
             binding.unitHeader.text = getString(R.string.offer_units)
             aaAdapter.rows = rankedRows(game, game.aaOffer)
@@ -172,14 +171,6 @@ class OffersFragment : Fragment() {
             .show()
     }
 
-    /** Small pictures of the [cards], three to a row, for a dialog. */
-    private fun cardGrid(cards: List<Card>, onClick: (Int) -> Unit) = RecyclerView(requireContext()).apply {
-        val padding = resources.getDimensionPixelSize(R.dimen.activity_horizontal_margin)
-        setPadding(padding, padding / 2, padding, 0)
-        layoutManager = GridLayoutManager(context, ARTIFACTS_PER_ROW)
-        adapter = CardGridAdapter(onClick).apply { rows = cards.map { CardRow(it, "") } }
-    }
-
     /** Shows the card full screen, with what taking it does and a button to take it. */
     private fun confirmTake(id: String?, @StringRes message: Int, take: SoloGame.() -> Card) {
         val game = viewModel.game.value ?: return
@@ -192,6 +183,5 @@ class OffersFragment : Fragment() {
 
     companion object {
         private const val MAX_ARTIFACTS_AT_ONCE = 3
-        private const val ARTIFACTS_PER_ROW = 3
     }
 }
